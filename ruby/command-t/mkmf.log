@@ -1,0 +1,92 @@
+find_header: checking for float.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <float.h>
+/* end */
+
+--------------------
+
+find_header: checking for ruby.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <ruby.h>
+/* end */
+
+--------------------
+
+find_header: checking for stdlib.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <stdlib.h>
+/* end */
+
+--------------------
+
+find_header: checking for string.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <string.h>
+/* end */
+
+--------------------
+
+have_header: checking for fcntl.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <fcntl.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/errno.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <sys/errno.h>
+/* end */
+
+--------------------
+
+have_header: checking for sys/socket.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <sys/socket.h>
+/* end */
+
+--------------------
+
+have_header: checking for ruby/st.h... -------------------- no
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+conftest.c:1:21: fatal error: ruby/st.h: No such file or directory
+compilation terminated.
+checked program was:
+/* begin */
+1: #include <ruby/st.h>
+/* end */
+
+--------------------
+
+have_header: checking for st.h... -------------------- yes
+
+"gcc -E -I. -I/usr/lib/ruby/1.8/x86_64-linux -I. -D_FORTIFY_SOURCE=2  -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -g -g -O2  -fPIC    conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include <st.h>
+/* end */
+
+--------------------
+

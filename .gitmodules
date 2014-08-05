@@ -1,0 +1,57 @@
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "bundle/TagHighlight"]
+	path = bundle/TagHighlight
+	url = https://github.com/vim-scripts/TagHighlight.git
+[submodule "bundle/powerline-fonts"]
+	path = bundle/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
+[submodule "bundle/vim-nerdtree-tabs"]
+	path = bundle/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule "bundle/autojump.vim"]
+	path = bundle/autojump.vim
+	url = https://github.com/trotter/autojump.vim.git
+[submodule "bundle/minibufexpl.vim"]
+	path = bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "bundle/vim-multiple-cursors"]
+	path = bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "bundle/L9"]
+	path = bundle/L9
+	url = https://github.com/vim-scripts/L9.git
+[submodule "bundle/calendar.vim"]
+	path = bundle/calendar.vim
+	url = https://github.com/itchyny/calendar.vim.git
+[submodule "bundle/Command-T"]
+	path = bundle/Command-T
+	url = https://github.com/wincent/Command-T.git
+[submodule "bundle/ctrlp-funky"]
+	path = bundle/ctrlp-funky
+	url = https://github.com/tacahiroy/ctrlp-funky.git
+[submodule "bundle/ctrlp.vim"]
+	path = bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "bundle/vim-diff-toggle"]
+	path = bundle/vim-diff-toggle
+	url = https://github.com/twe4ked/vim-diff-toggle.git
+[submodule "bundle/NERD_tree-Project"]
+	path = bundle/NERD_tree-Project
+	url = https://github.com/vim-scripts/NERD_tree-Project.git
+[submodule "bundle/sparkup"]
+	path = bundle/sparkup
+	url = https://github.com/rstacruz/sparkup.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vim-monokai-refined"]
+	path = bundle/vim-monokai-refined
+	url = git@github.com:jaromero/vim-monokai-refined.git
