@@ -58,3 +58,6 @@
 [submodule "bundle/ctrlsf.vim"]
 	path = bundle/ctrlsf.vim
 	url = https://github.com/dyng/ctrlsf.vim.git
+[submodule "bundle/vim-youdao-translater"]
+	path = bundle/vim-youdao-translater
+	url = https://github.com/ianva/vim-youdao-translater.git

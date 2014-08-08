@@ -492,3 +492,13 @@ noremap <C-Right> <C-W>l
 "
 noremap <Leader>n :MBEbn<CR>
 noremap <Leader>p :MBEbp<CR>
+
+" CtrlSF
+nnoremap <C-F> :CtrlSF<space>
+nmap <Leader>cf :CtrlSF <c-r><c-w><CR>
+nmap <Leader>csf :CtrlSFOpen<CR>
+
+"youdao
+vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
+nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
+noremap <leader>yd :Yde<CR>
