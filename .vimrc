@@ -502,3 +502,5 @@ nmap <Leader>csf :CtrlSFOpen<CR>
 vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
 nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
+"for indentLine
+let g:indentLine_color_term = 112
