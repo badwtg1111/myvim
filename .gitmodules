@@ -55,3 +55,6 @@
 [submodule "bundle/vim-monokai-refined"]
 	path = bundle/vim-monokai-refined
 	url = git@github.com:jaromero/vim-monokai-refined.git
+[submodule "bundle/ctrlsf.vim"]
+	path = bundle/ctrlsf.vim
+	url = https://github.com/dyng/ctrlsf.vim.git
