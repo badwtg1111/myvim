@@ -94,28 +94,33 @@ set expandtab
 "set tags+=/usr/include/c++/tags
 "set tags+=/home/badwtg1111/cpp
 "
-"set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/.tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/packages/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/system/.tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/development/tags
-"set tags+=/home/chenchunsheng/qc4.4_20140513/vendor/tags
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
 
 "set tags+=/home/chenchunsheng/workdir/test_tiff/jni/tags
 
 "cs add /home/chenchunsheng/workdir/test_tiff/jni/cscope.out /home/chenchunsheng/workdir/test_tiff/jni
-"cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks
 cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages 
 cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external 
 cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development 
-"cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor 
-" for lte-mol
-set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
-cs add /home/chenchunsheng/lte-mol/frameworks/cscope.out /home/chenchunsheng/lte-mol/frameworks
 
-set tags+=/home/chenchunsheng/lte-mol/vendor/tags
-cs add /home/chenchunsheng/lte-mol/vendor/cscope.out /home/chenchunsheng/lte-mol/vendor
+" for qc4.4
+set tags+=/home/chenchunsheng/qc4.4_20140513/vendor/tags
+cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor 
+
+set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/tags
+cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks
+
+
+" for lte-mol
+"set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
+"cs add /home/chenchunsheng/lte-mol/frameworks/cscope.out /home/chenchunsheng/lte-mol/frameworks
+
+"set tags+=/home/chenchunsheng/lte-mol/vendor/tags
+"cs add /home/chenchunsheng/lte-mol/vendor/cscope.out /home/chenchunsheng/lte-mol/vendor
 
 
 
