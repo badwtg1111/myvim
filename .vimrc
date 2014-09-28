@@ -521,3 +521,31 @@ nnoremap <silent> <C-M> <Esc>:Ydc<CR>
 noremap <leader>yd :Yde<CR>
 "for indentLine
 let g:indentLine_color_term = 112
+
+" cctree highlight setting
+highlight CCTreeHiSymbol  gui=bold guifg=yellow guibg=darkblue ctermfg=yellow ctermbg=darkblue
+highlight CCTreeHiMarkers  gui=bold guifg=yellow guibg=darkblue ctermfg=yellow ctermbg=darkblue
+highlight Ignore ctermfg=black guifg=bg
+" cctree cscopedb
+let g:CCTreeCscopeDb = "cscope.out"
+" 设置这个之后在敲完命令 CCTreeLoadDB 之后回车就会自动选上 cscope.out
+" set updatetime
+set updatetime=0
+" 设置这个之后，光标移动时，CCTree-Preview 里面的内容才会实时进行语法加亮
+
+"本来以为设置完 updatetime 就可以很方便的使用 CCTree 了，这时发现，一旦设置了 updatetime，当 CCTree-Preview 里面的内容被加亮之后，
+"就无法使用 CCTreeLoadBufferUsingTag(快捷键为 <CR>，即回车)这个命令了，但仍旧可以使用 CCTreePreviewBufferUsingTag(快捷键为 <Ctrl+p>)。
+"查看 cctree.vim 后发现，函数 s:CCTreeLoadBufferFromKeyword 和 s:CCTreePreviewBufferFromKeyword 在调用函数 s:CCTreeGetCurrentKeyword 上
+"有些不同。在将 s:CCTreeLoadBufferFromKeyword 中的调用方式改成和 s:CCTreePreviewBufferFromKeyword 的一样后，就可以在 CCTree-Preview 里正常使用回车进行跳转了。
+"修改方式如下：
+"将位于function! s:CCTreeLoadBufferFromKeyword中的
+"if s:CCTreeGetXCurrentKeyworkd() == -1
+       "return
+"endif
+   "替换成
+"call s:CCTreeGetCurrentKeyword()
+"if s:CCTreekeyword == ''
+      "return
+"endif
+"大功告成！
+
