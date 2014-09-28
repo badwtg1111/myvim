@@ -98,13 +98,11 @@ set tags+=/home/chenchunsheng/qc4.4_20140513/packages/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/system/.tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/development/tags
 
-set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
 
 "set tags+=/home/chenchunsheng/workdir/test_tiff/jni/tags
 
 "cs add /home/chenchunsheng/workdir/test_tiff/jni/cscope.out /home/chenchunsheng/workdir/test_tiff/jni
 cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages 
-cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external 
 cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development 
 
 " for qc4.4
@@ -114,6 +112,8 @@ cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/
 set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/tags
 cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks
 
+set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
+cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external 
 
 " for lte-mol
 "set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
@@ -548,4 +548,52 @@ set updatetime=0
       "return
 "endif
 "大功告成！
+
+
+"CCtree.Vim  C Call-Tree Explorer   源码浏览工具关系树(赞)"{{{
+"1. 除了cscope ctags 程序的安装, 还需安装强力胶ccglue(ctags-cscope glue): http://sourceforge.net/projects/ccglue/files/src/
+"    (1) ./configure  &&  make  && make install  (或直接下载ccglue放到/bin中
+"    (2) $ccglue -S cscope.out -o cctree.out   或$ccglue -S cscope1.out cscope2.out -o cctree.out"    
+"    (3) :CCTreeLoadXRefDBFromDisk cctree.out
+"2. 映射快捷键(上面F1) 其中$CCTREE_DB是环境变量,写在~/.bashrc中"   
+"   map <F1> :CCTreeLoadXRefDBFromDisk $CCTREE_DB<CR>"    
+"   eg.
+"        export CSCOPE_DB=/home/tags/cscope.out        
+"        export CCTREE_DB=/home/tags/cctree.out        
+"        export MYTAGS_DB=/home/tags/tags
+"注: 如果没有装ccglue ( 麻烦且快捷键不好设置, 都用完了)
+"map <leader>ctl :CCTreeLoadDB $CSCOPE_DB<CR>              
+"这样加载有点慢, cscope.out cctree.out存放的格式不同
+"map <leader>xxx :CCTreeAppendDB $CSCOPE_DB2<CR>           
+"追加另一个库"        
+"map <leader>xxx :CCTreSaveXRefDB $CSCOPE_DB<CR>           
+"格式转化xref格式
+"map <leader>xxx :CCTreeLoadXRefDB $CSCOPE_DB<CR>          
+"加载xref 格式的库(或者如下)"            
+"map <leader>xxx :CCTreeLoadXRefDBFromDisk $CSCOPE_DB<CR>  
+"加载xref格式的库"        
+"map <leader>xxx :CCTreeUnLoadDB                           
+"卸载所有的数据库"
+"
+"3. 设置
+"let g:CCTreeDisplayMode = 3        " 当设置为垂直显示时, 模式为3最合适. (1-minimum width, 2-little space, 3-witde)
+"let g:CCTreeWindowVertical = 0     " 水平分割,垂直显示
+"let g:CCTreeWindowMinWidth = 40    " 最小窗口
+"let g:CCTreeUseUTF8Symbols = 1     " 为了在终端模式下显示符号
+"g:CCTreeKeyToggleWindow = '<C-\>w' "打开关闭窗口 
+"let g:CCTreeHilightCallTree = 0    " 去掉高亮, 太耀眼.
+"默认设置:
+"            g:CCTreeKeyTraceForwardTree = '<C-\>>'   "该函数调用其他函数            
+"            g:CCTreeKeyTraceReverseTree = '<C-\><'   "该函数被谁调用            
+"            g:CCTreeKeyHilightTree = '<C-l>'         " Static highlighting            
+"            g:CCTreeKeySaveWindow = '<C-\>y'"            
+"            g:CCTreeKeyToggleWindow = '<C-\>w'
+"            g:CCTreeKeyCompressTree = 'zs'           " Compress call-tree            
+"            g:CCTreeKeyDepthPlus = '<C-\>='"            
+"            g:CCTreeKeyDepthMinus = '<C-\>-'
+"CCtree.Vim  C Call-Tree Explorer   源码浏览工具关系树(赞)"}}}
+
+
+
+
 
