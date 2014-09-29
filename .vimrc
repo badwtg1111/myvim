@@ -83,6 +83,7 @@ match WhitespaceEOL /\s\+$/
 set ts=4
 set expandtab
 
+"set backspace=indent,eol,start
 
 " for qt-cppcomplete, added by LiaoLiang Nov28,2008
 "set tags+=/opt/qtsdk-2010.05/tags
@@ -296,7 +297,8 @@ set   autoread
 set   autowrite
 set   background=dark
 set   backspace=indent,eol,start
-set nobackup
+set   softtabstop=4
+set   nobackup
 set   cindent
 set   cinoptions=:0
 set   cursorline
