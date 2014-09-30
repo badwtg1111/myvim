@@ -91,9 +91,6 @@
 [submodule "bundle/vimshell.vim.git"]
 	path = bundle/vimshell.vim.git
 	url = https://github.com/Shougo/vimshell.vim.git
-[submodule "bundle/echofunc.git"]
-	path = bundle/echofunc.git
-	url = https://github.com/mbbill/echofunc.git
 [submodule "/home/chenchunsheng/.vim/bundle/vimproc.vim"]
 	path = /home/chenchunsheng/.vim/bundle/vimproc.vim
 	url = https://github.com/Shougo/vimproc.vim.git
