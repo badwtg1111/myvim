@@ -595,7 +595,8 @@ set updatetime=0
 "            g:CCTreeKeyDepthMinus = '<C-\>-'
 "CCtree.Vim  C Call-Tree Explorer   源码浏览工具关系树(赞)"}}}
 
-
+"x-marks-the-spot
+"nmap <unique> <C-BS> <Plug>XmarksthespotNextmark
 
 
 

@@ -79,3 +79,12 @@
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = https://github.com/godlygeek/csapprox.git
+[submodule "bundle/x-marks-the-spot.vim.git"]
+	path = bundle/x-marks-the-spot.vim.git
+	url = https://github.com/john2x/x-marks-the-spot.vim.git
+[submodule "bundle/vim-cuteErrorMarker.git"]
+	path = bundle/vim-cuteErrorMarker.git
+	url = https://github.com/Twinside/vim-cuteErrorMarker.git
+[submodule "bundle/vim-markology.git"]
+	path = bundle/vim-markology.git
+	url = https://github.com/jeetsukumaran/vim-markology.git
