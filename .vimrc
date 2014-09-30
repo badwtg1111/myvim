@@ -1,5 +1,8 @@
 execute pathogen#infect()
 execute pathogen#helptags()
+"for echofunc
+"execute pathogen#infect("after")
+
 syntax on
 filetype plugin indent on
 
@@ -54,7 +57,7 @@ filetype plugin indent on
 "set guifont=Courier\ New\ 14
 set guifont=Inconsolata\ for\ Powerline\ 14
 set tags=tags
-set autochdir
+"set autochdir
 set t_Co=256
 
 "command -range=%chen :ConqueTermSplit bash
@@ -597,6 +600,5 @@ set updatetime=0
 
 "x-marks-the-spot
 "nmap <unique> <C-BS> <Plug>XmarksthespotNextmark
-
 
 
