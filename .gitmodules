@@ -100,3 +100,12 @@
 [submodule "bundle/echofunc.vim"]
 	path = bundle/echofunc.vim
 	url = https://github.com/vim-scripts/echofunc.vim.git
+[submodule "bundle/winmanager--Fox"]
+	path = bundle/winmanager--Fox
+	url = https://github.com/vim-scripts/winmanager--Fox.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/a.vim"]
+	path = bundle/a.vim
+	url = https://github.com/vim-scripts/a.vim.git
