@@ -289,8 +289,8 @@ filetype plugin indent on
 syntax on
 " Setting colorscheme
 "color mycolor
-color desert
-"color adrian
+"color desert
+color adrian
 " Other settings.
 set   autoindent
 set   autoread
@@ -493,7 +493,7 @@ function! AccentDemo()
     let g:airline_section_a = airline#section#create(keys)
 endfunction
 "autocmd VimEnter * call AccentDemo()
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>nn <plug>NERDTreeTabsToggle<CR>
 
 map <Leader>mbe :MBEOpen<cr>
 map <Leader>mbc :MBEClose<cr>
@@ -509,7 +509,7 @@ noremap <C-Right> <C-W>l
 " If you like <C-TAB> and <C-S-TAB> to switch buffers
 " in the current window then perform the remapping
 "
-noremap <Leader>n :MBEbn<CR>
+noremap <Leader>n1 :MBEbn<CR>
 noremap <Leader>p :MBEbp<CR>
 
 " CtrlSF

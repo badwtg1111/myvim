@@ -70,3 +70,12 @@
 [submodule "bundle/vimwiki"]
 	path = bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "bundle/mark.vim"]
+	path = bundle/mark.vim
+	url = https://github.com/paulhybryant/mark.git
+[submodule "bundle/flagit"]
+	path = bundle/flagit
+	url = https://github.com/paulrouget/flagit.git
+[submodule "bundle/csapprox"]
+	path = bundle/csapprox
+	url = https://github.com/godlygeek/csapprox.git
