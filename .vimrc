@@ -6,6 +6,10 @@ execute pathogen#helptags()
 syntax on
 filetype plugin indent on
 
+"vim paste
+set clipboard=unnamed
+set pastetoggle=<F4>
+
 "------------------------------------------------------------------------------
 "for Vundle
 "set nocompatible              " be iMproved, required
@@ -426,7 +430,7 @@ function! RunShell(Msg, Shell)
 	call system(a:Shell)
 	echon 'done'
 endfunction
-nmap  <F4> :TlistToggle<cr>
+"nmap  <F4> :TlistToggle<cr>
 nnoremap <silent> <F2> :TagbarToggle<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
