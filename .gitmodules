@@ -106,3 +106,9 @@
 [submodule "bundle/a.vim"]
 	path = bundle/a.vim
 	url = https://github.com/vim-scripts/a.vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "/home/chenchunsheng/.vim/bundle/auto-pairs"]
+	path = /home/chenchunsheng/.vim/bundle/auto-pairs
+	url = git://github.com/jiangmiao/auto-pairs.git
