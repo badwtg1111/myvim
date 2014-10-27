@@ -417,8 +417,8 @@ let g:LookupFile_AlwaysAcceptFirst=1
 let g:LookupFile_AllowNewFiles=0
 " Man.vim
 source $VIMRUNTIME/ftplugin/man.vim
-nmap <C-K> :Man 3 <cword><CR>
-imap <C-K> <ESC><C-K>
+nmap <C-M> :Man 3 <cword><CR>
+imap <C-M> <ESC><C-M>
 
 " snipMate
 let g:snips_author="Du Jianfeng"
@@ -525,8 +525,8 @@ nmap <Leader>cf :CtrlSF <c-r><c-w><CR>
 nmap <Leader>csf :CtrlSFOpen<CR>
 
 "youdao
-vnoremap <silent> <C-M> <Esc>:Ydv<CR> 
-nnoremap <silent> <C-M> <Esc>:Ydc<CR> 
+vnoremap <silent> <C-K> <Esc>:Ydv<CR> 
+nnoremap <silent> <C-K> <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
 "for indentLine
 let g:indentLine_color_term = 112
