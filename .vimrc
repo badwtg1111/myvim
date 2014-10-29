@@ -1,18 +1,11 @@
+"for pathogen {{{
 execute pathogen#infect()
 execute pathogen#helptags()
 "for echofunc
 "execute pathogen#infect("after")
+"}}}
 
-syntax on
-filetype plugin indent on
-
-"vim paste
-set clipboard=unnamed
-set pastetoggle=<F4>
-
-let g:Tlist_Ctags_Cmd='/usr/bin/ctags'
-
-
+" for neobundle {{{ 
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
@@ -47,6 +40,28 @@ NeoBundle 'Shougo/neobundle-vim-recipes'
 NeoBundle 'Shougo/unite-help'
 NeoBundle 'ujihisa/unite-locate'
 
+NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'ujihisa/unite-font'
+NeoBundle 't9md/vim-unite-ack'
+NeoBundle 'daisuzu/unite-adb'
+NeoBundle 'osyo-manga/unite-airline_themes'
+NeoBundle 'mattn/unite-vim_advent-calendar'
+NeoBundle 'kannokanno/unite-dwm'
+NeoBundle 'raw1z/unite-projects'
+NeoBundle 'voi/unite-ctags'
+NeoBundle 'Shougo/unite-session'
+NeoBundle 'osyo-manga/unite-quickfix'
+NeoBundle 'Shougo/vimfiler.vim'
+
+"NeoBundle 'mattn/webapi-vim'
+"NeoBundle 'mattn/googlesuggest-complete-vim'
+"NeoBundle 'mopp/googlesuggest-source.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'tacroe/unite-mark'
+NeoBundle 'tacroe/unite-alias'
+NeoBundle 'ujihisa/quicklearn'
+NeoBundle 'tex/vim-unite-id'
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -61,11 +76,11 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-
+"}}}
 
 
 "------------------------------------------------------------------------------
-"for Vundle
+"for Vundle {{{
 "set nocompatible              " be iMproved, required
 "filetype off                  " required
 
@@ -108,8 +123,16 @@ NeoBundleCheck
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+" }}}
 "--------------------------------------------------------------------------------
 
+
+syntax on
+filetype plugin indent on
+
+"vim paste
+set clipboard=unnamed
+set pastetoggle=<F4>
 
 
 "set guifont=Courier\ New\ 14
@@ -191,25 +214,6 @@ cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunshen
 
 
 
-"cscope设置
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-"nmap s :cs find s =expand("") 
-" :cw    "查找声明
-"nmap g :cs find g =expand("") 
-":cw     "查找定义
-"nmap c :cs find c =expand("") 
-":cw    "查找调用
-"nmap t :cs find t =expand("") :cw    
-"查找指定的字符串
-"nmap e :cs find e =expand("") 
-":cw    "查找egrep模式，相当于egrep功能，但查找速度快多了
-"nmap f :cs find f =expand("") 
-":cw    "查找文件
-"nmap i :cs find i ^=expand("")$ 
-":cw   "查找包含本文件的文件
-"nmap d :cs find d =expand("")  
-":cw   "查找本函数调用的函数
 
 
 
@@ -445,16 +449,6 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=25
 let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeQuitOnOpen=0
-" cscope.vim
-if has("cscope")
-    set csto=1
-    set cst
-    set nocsverb
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
-    set csverb
-endif
 " OmniCppComplete.vim
 let g:OmniCpp_DefaultNamespaces=["std"]
 let g:OmniCpp_MayCompleteScope=1
@@ -505,17 +499,10 @@ nmap  <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
 nmap  <F9> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
 nmap <F10> :call HLUDSync()<cr>
 nmap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
-nmap <F12> :call RunShell("Generate cscope", "cscope -Rb")<cr>:cs add cscope.out<cr>
 
-nmap <leader>sa :cs add cscope.out<cr>
-nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
+
+
+
 nnoremap <silent> <leader>g :Grep<CR> 
 
 nmap <leader>zz <C-w>o
@@ -762,7 +749,6 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 "call unite#custom#source('file_rec/async','sorters','sorter_rank', )
 " replacing unite with ctrl-p
 "let g:unite_enable_split_vertically = 1
-
 let g:unite_source_file_mru_time_format = "%m/%d %T "
 let g:unite_source_directory_mru_limit = 80
 let g:unite_source_directory_mru_time_format = "%m/%d %T "
@@ -773,54 +759,9 @@ let g:unite_enable_smart_case = 1
 let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
-let g:unite_prompt='» '
+let g:unite_prompt='>> '
+"let g:unite_split_rule = 'topleft'     "right'
 let g:unite_split_rule = 'botright'
-if executable('ag')
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-let g:unite_source_grep_recursive_opt=''
-endif
-"nnoremap <silent> <c-p> :Unite -auto-resize file file_mru file_rec<cr>
-nnoremap <leader>xx :Unite -auto-resize file file_mru file_rec<cr>
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>mr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-
-
-
-"" File search
-
-nnoremap <silent><C-p> :Unite -no-split -start-insert file_rec buffer<CR>
-
-"" shortcup
-nnoremap <silent><leader>u  :<C-u>Unite -start-insert mapping<CR>
-
-"" Execute help.
-nnoremap <silent><leader>h  :Unite -start-insert -no-split help<CR>
-
-"" Tag search
-
-""" For searching the word in the cursor in tag file
-nnoremap <silent><leader>f :Unite -no-split tag:<C-R><C-w><CR>
-
-nnoremap <silent><leader>ff :Unite tag -start-insert -no-split<CR>
-
-"" grep dictionay
-
-""" For searching the word in the cursor in the current directory
-nnoremap <silent><leader>s :Unite -no-split grep:.::<C-R><C-w><CR>
-
-""" For searching the word handin
-nnoremap <silent><leader>ss :Unite -no-split grep:.<CR>
-
-""" For searching the word in the cursor in the current buffer
-noremap <silent><leader>sf :Unite -no-split grep:%::<C-r><C-w><CR>
-
-""" For searching the word in the cursor in all opened buffer
-noremap <silent><leader>sa :Unite -no-split grep:$buffers::<C-r><C-w><CR>
 
 let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude='tags'"
@@ -834,15 +775,166 @@ let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude-dir='.git'"
 \ . " --exclude-dir='node_modules'"
 
-"" outline
-nnoremap <leader>o :Unite -start-insert -no-split outline<CR>
+if executable('ag')
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_recursive_opt=''
+endif
 
+
+if executable('jvgrep')
+    " For jvgrep.
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-i --exclude ''\.(git|svn|hg|bzr)'''
+    let g:unite_source_grep_recursive_opt = '-R'
+endif
+
+" For ack.
+if executable('ack')
+    let g:unite_source_grep_command = 'ack'
+    let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+""" my custom unite config
+" The prefix key.
+nnoremap    [unite]   <Nop>
+nmap    f [unite]
+
+nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir
+            \ -buffer-name=files buffer bookmark file<CR>
+nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir
+            \ -buffer-name=files -prompt=%\  buffer bookmark file<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite
+            \ -buffer-name=register register<CR>
+nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]f
+            \ :<C-u>Unite -buffer-name=resume resume<CR>
+nnoremap <silent> [unite]ma
+            \ :<C-u>Unite mapping<CR>
+nnoremap <silent> [unite]me
+            \ :<C-u>Unite output:message<CR>
+nnoremap  [unite]f  :<C-u>Unite source<CR>
+
+nnoremap <silent> [unite]s
+            \ :<C-u>Unite -buffer-name=files -no-split
+            \ jump_point file_point buffer_tab
+            \ file_rec:! file file/new<CR>
+
+" Start insert.
+"call unite#custom#profile('default', 'context', {
+"\   'start_insert': 1
+"\ })
+
+" Like ctrlp.vim settings.
+"call unite#custom#profile('default', 'context', {
+"\   'start_insert': 1,
+"\   'winheight': 10,
+"\   'direction': 'botright',
+"\ })
+
+" Prompt choices.
+"call unite#custom#profile('default', 'context', {
+"\   'prompt': '» ',
+"\ })
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+    " Overwrite settings.
+
+    imap <buffer> jj      <Plug>(unite_insert_leave)
+    "imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+
+    imap <buffer><expr> j unite#smart_map('j', '')
+    imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+    imap <buffer> '     <Plug>(unite_quick_match_default_action)
+    nmap <buffer> '     <Plug>(unite_quick_match_default_action)
+    imap <buffer><expr> x
+                \ unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
+    nmap <buffer> x     <Plug>(unite_quick_match_choose_action)
+    nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+    nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    nnoremap <silent><buffer><expr> l
+                \ unite#smart_map('l', unite#do_action('default'))
+
+    let unite = unite#get_current_unite()
+    if unite.profile_name ==# 'search'
+        nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+    else
+        nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+    endif
+
+    nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+    nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
+                \ empty(unite#mappings#get_current_filters()) ?
+                \ ['sorter_reverse'] : [])
+
+    " Runs "split" action by <C-s>.
+    imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+endfunction"}}}
+
+
+
+""" end for my custom unite config
+
+
+"" File search
+
+nnoremap <silent><C-p> :Unite -no-split -start-insert file_rec buffer<CR>
+"nnoremap <leader>mm :Unite -auto-resize file file_mru file_rec<cr>
+nnoremap <leader>mm :Unite   -no-split -start-insert   file file_mru file_rec buffer<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>tf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>mr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+"" shortcup for key mapping
+nnoremap <silent><leader>u  :<C-u>Unite -start-insert mapping<CR>
+
+"" Execute help.
+nnoremap <silent><leader>h  :Unite -start-insert -no-split help<CR>
+" Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
+"" Tag search
+
+""" For searching the word in the cursor in tag file
+nnoremap <silent><leader>f :Unite -no-split tag/include:<C-R><C-w><CR>
+
+nnoremap <silent><leader>ff :Unite tag/include -start-insert -no-split<CR>
+
+"" grep dictionay
+
+""" For searching the word in the cursor in the current directory
+nnoremap <silent><leader>v :Unite -auto-preview -no-split grep:.::<C-R><C-w><CR>
+
+nnoremap <space>/ :Unite -auto-preview grep:.<cr>
+
+""" For searching the word handin
+nnoremap <silent><leader>vs :Unite -auto-preview -no-split grep:.<CR>
+
+""" For searching the word in the cursor in the current buffer
+noremap <silent><leader>vf :Unite -auto-preview -no-split grep:%::<C-r><C-w><CR>
+
+""" For searching the word in the cursor in all opened buffer
+noremap <silent><leader>va :Unite -auto-preview -no-split grep:$buffers::<C-r><C-w><CR>
+
+
+"" outline
+"nnoremap <leader>o :Unite -start-insert -no-split outline<CR>
+
+nnoremap <leader>o :<C-u>Unite -auto-preview -no-split -buffer-name=outline -start-insert outline<cr>
 "" Line search
-nnoremap <leader>l :Unite line -start-insert -no-split<CR>
+nnoremap <leader>l :Unite line -auto-preview -start-insert -no-split<CR>
 
 "" Yank history
-let g:unite_source_history_yank_enable = 1
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -auto-preview -buffer-name=yank history/yank<cr>
+"nnoremap <space>y :Unite history/yank<cr>
 
 
 " search plugin
@@ -859,86 +951,186 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
-nnoremap <space>/ :Unite grep:.<cr>
-
-let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <space>s :Unite -quick-match buffer<cr>
+nnoremap <space>s :Unite -quick-match -auto-preview buffer<cr>
 
 
-" settings of cscope.
-" I use GNU global instead cscope because global is faster.
-set cscopetag
-set cscopeprg=gtags-cscope
-cs add /home/chenchunsheng/qc4.4_20140513/GTAGS
+"for Unite menu{
 
-set cscopequickfix=c-,d-,e-,f-,g0,i-,s-,t-
-nmap <silent> <leader>j <ESC>:cstag <c-r><c-w><CR>
-nmap <silent> <leader>g <ESC>:lcs f c <c-r><c-w><cr>:lw<cr>
-nmap <silent> <leader>s <ESC>:lcs f s <c-r><c-w><cr>:lw<cr>
-command! -nargs=+ -complete=dir FindFiles :call FindFiles(<f-args>)
-au VimEnter * call VimEnterCallback()
-au BufAdd *.[ch] call FindGtags(expand('<afile>'))
-au BufWritePost *.[ch] call UpdateGtags(expand('<afile>'))
-  
-function! FindFiles(pat, ...)
-     let path = ''
-     for str in a:000
-         let path .= str . ','
-     endfor
-  
-     if path == ''
-         let path = &path
-     endif
-  
-     echo 'finding...'
-     redraw
-     call append(line('$'), split(globpath(path, a:pat), '\n'))
-     echo 'finding...done!'
-     redraw
-endfunc
-  
-function! VimEnterCallback()
-     for f in argv()
-         if fnamemodify(f, ':e') != 'c' && fnamemodify(f, ':e') != 'h'
-             continue
-         endif
-  
-         call FindGtags(f)
-     endfor
-endfunc
-  
-function! FindGtags(f)
-     let dir = fnamemodify(a:f, ':p:h')
-     while 1
-         let tmp = dir . '/GTAGS'
-         if filereadable(tmp)
-             exe 'cs add ' . tmp . ' ' . dir
-             break
-         elseif dir == '/'
-             break
-         endif
-  
-         let dir = fnamemodify(dir, ":h")
-     endwhile
-endfunc
-  
-function! UpdateGtags(f)
-     let dir = fnamemodify(a:f, ':p:h')
-     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
-endfunction
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 
-"for unite-gtags
+"}
+"}}}
 
-nnoremap <leader>gd :execute 'Unite gtags/def:'.expand('<cword>')<CR>
-nnoremap <leader>gc :execute 'Unite gtags/context'<CR>
-nnoremap <leader>gr :execute 'Unite gtags/ref'<CR>
-nnoremap <leader>gg :execute 'Unite gtags/grep'<CR>
-nnoremap <leader>gp :execute 'Unite gtags/completion'<CR>
-vnoremap <leader>gd <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
+
+"for cscope {{{
+nmap <F12> :call RunShell("Generate cscope", "cscope -Rb")<cr>:cs add cscope.out<cr>
+
+" cscope.vim
+if has("cscope")
+    set csto=1
+    set cst
+    set nocsverb
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
+endif
+"cscope设置
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+"nmap s :cs find s =expand("") 
+" :cw    "查找声明
+"nmap g :cs find g =expand("") 
+":cw     "查找定义
+"nmap c :cs find c =expand("") 
+":cw    "查找调用
+"nmap t :cs find t =expand("") :cw    
+"查找指定的字符串
+"nmap e :cs find e =expand("") 
+":cw    "查找egrep模式，相当于egrep功能，但查找速度快多了
+"nmap f :cs find f =expand("") 
+":cw    "查找文件
+"nmap i :cs find i ^=expand("")$ 
+":cw   "查找包含本文件的文件
+"nmap d :cs find d =expand("")  
+":cw   "查找本函数调用的函数
+nmap <leader>sa :cs add cscope.out<cr>
+nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
+nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
+nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
+"}}}
+
+"for gtags-cscope {{{
+"" settings of cscope.
+"" I use GNU global instead cscope because global is faster.
+"set cscopetag
+"set cscopeprg=gtags-cscope
+"cs add /home/chenchunsheng/qc4.4_20140513/GTAGS
+
+"set cscopequickfix=c-,d-,e-,f-,g0,i-,s-,t-
+"nmap <silent> <leader>vj <ESC>:cstag <c-r><c-w><CR>
+"nmap <silent> <leader>vc <ESC>:lcs f c <C-R>=expand("<cword>")<cr><cr>
+"nmap <silent> <leader>vd <ESC>:lcs f d <C-R>=expand("<cword>")<cr><cr>
+"nmap <silent> <leader>ve <ESC>:lcs f e <C-R>=expand("<cword>")<cr><cr>
+"nmap <silent> <leader>vf <ESC>:lcs f f <C-R>=expand("<cfile>")<cr><cr>
+"nmap <silent> <leader>vg <ESC>:lcs f g <C-R>=expand("<cword>")<cr><cr>
+"nmap <silent> <leader>vi <ESC>:lcs f i <C-R>=expand("<cfile>")<cr><cr>
+"nmap <silent> <leader>vs <ESC>:lcs f s <C-R>=expand("<cword>")<cr><cr>
+"nmap <silent> <leader>vt <ESC>:lcs f t <C-R>=expand("<cword>")<cr><cr>
+"command! -nargs=+ -complete=dir FindFiles :call FindFiles(<f-args>)
+"au VimEnter * call VimEnterCallback()
+"au BufAdd *.[ch] call FindGtags(expand('<afile>'))
+"au BufWritePost *.[ch] call UpdateGtags(expand('<afile>'))
+  
+"function! FindFiles(pat, ...)
+     "let path = ''
+     "for str in a:000
+         "let path .= str . ','
+     "endfor
+  
+     "if path == ''
+         "let path = &path
+     "endif
+  
+     "echo 'finding...'
+     "redraw
+     "call append(line('$'), split(globpath(path, a:pat), '\n'))
+     "echo 'finding...done!'
+     "redraw
+ "endfunc
+  
+"function! VimEnterCallback()
+     "for f in argv()
+         "if fnamemodify(f, ':e') != 'c' && fnamemodify(f, ':e') != 'h'
+             "continue
+         "endif
+  
+         "call FindGtags(f)
+     "endfor
+"endfunc
+  
+"function! FindGtags(f)
+     "let dir = fnamemodify(a:f, ':p:h')
+     "while 1
+         "let tmp = dir . '/GTAGS'
+         "if filereadable(tmp)
+             "exe 'cs add ' . tmp . ' ' . dir
+             "break
+         "elseif dir == '/'
+             "break
+         "endif
+  
+         "let dir = fnamemodify(dir, ":h")
+     "endwhile
+"endfunc
+  
+"function! UpdateGtags(f)
+     "let dir = fnamemodify(a:f, ':p:h')
+     "exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
+"endfunction
+"}}}
+
+"for unite-gtags {{{
+
+nnoremap <leader>gd :execute 'Unite -auto-preview gtags/def:'.expand('<cword>')<CR>
+nnoremap <leader>gc :execute 'Unite -auto-preview gtags/context'<CR>
+nnoremap <leader>gr :execute 'Unite -auto-preview gtags/ref'<CR>
+nnoremap <leader>gg :execute 'Unite -auto-preview gtags/grep'<CR>
+nnoremap <leader>gp :execute 'Unite -auto-preview gtags/completion'<CR>
+vnoremap <leader>gd <ESC>:execute 'Unite -auto-preview gtags/def:'.GetVisualSelection()<CR>
 
 let g:unite_source_gtags_project_config = {
   \ '_':                   { 'treelize': 0 }
   \ }
 " specify your project path as key.
 " '_' in key means default configuration.
+" }}}
+
+"for vimfiler {{{
+let g:vimfiler_as_default_explorer = 1
+
+"}}}
+
+"for quicklearn {{{
+nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
+"}}}
