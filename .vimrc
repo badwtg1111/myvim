@@ -10,6 +10,60 @@ filetype plugin indent on
 set clipboard=unnamed
 set pastetoggle=<F4>
 
+let g:Tlist_Ctags_Cmd='/usr/bin/ctags'
+
+
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+if has('vim_starting')
+    set nocompatible               " Be iMproved
+
+    " Required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+        let g:make = 'make'
+endif
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'hewes/unite-gtags'
+NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'ujihisa/unite-launch'
+NeoBundle 'osyo-manga/unite-filetype'
+NeoBundle 'thinca/vim-unite-history'
+NeoBundle 'Shougo/neobundle-vim-recipes'
+NeoBundle 'Shougo/unite-help'
+NeoBundle 'ujihisa/unite-locate'
+
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+
+
+
 "------------------------------------------------------------------------------
 "for Vundle
 "set nocompatible              " be iMproved, required
@@ -66,15 +120,18 @@ set t_Co=256
 
 "command -range=%chen :ConqueTermSplit bash
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim 
-"let g:ctrlp_map = ',,'
-"let g:ctrlp_open_multiple_files = 'v'
+" comment for ctrlp {{{
+"set runtimepath^=~/.vim/bundle/ctrlp.vim 
+""let g:ctrlp_map = ',,'
+""let g:ctrlp_open_multiple_files = 'v'
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git)$',
-  \ 'file': '\v\.(log|jpg|png|jpeg)$',
-  \ }
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/]\.(git)$',
+  "\ 'file': '\v\.(log|jpg|png|jpeg)$',
+  "\ }
+
+"}}}
 
 "set rtp+=~/.vim/bundle/NERD_tree-Project 
 "let g:NTPNames = add(g:NTPNames, 'SConstruct')
@@ -432,12 +489,12 @@ function! RunShell(Msg, Shell)
 endfunction
 "nmap  <F4> :TlistToggle<cr>
 nnoremap <silent> <F2> :TagbarToggle<CR>
-nnoremap <Leader>t :TagbarToggle<CR>
+"nnoremap <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
 
 nmap  <F3> :ToggleNERDTree<cr>
 "let NERDTreeWinPos='left'
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
+"nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let g:NTPNames = ['.git','build.xml', 'Makefile', '.project', '.lvimrc','Android.mk']
 let g:NTPNames = add(g:NTPNames, 'SConstruct')
 call extend(g:NTPNames, ['*.sln', '*.csproj'])
@@ -464,12 +521,17 @@ nnoremap <silent> <leader>g :Grep<CR>
 nmap <leader>zz <C-w>o
 nmap <leader>gs :GetScripts<cr>
 
-let g:ctrlp_extensions = ['funky']
-nnoremap <Leader>fu :CtrlPFunky<Cr><Cr>
-nnoremap <Leader>mm :CtrlPMixed<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
+" comment for ctrlp-funky {{{
+"let g:ctrlp_extensions = ['funky']
+"nnoremap <Leader>fu :CtrlPFunky<Cr><Cr>
+"nnoremap <Leader>mm :CtrlPMixed<Cr>
+"" narrow the list down with a word under cursor
+"nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+"let g:ctrlp_funky_syntax_highlight = 1
+" }}}
+
+
+
 nmap <silent> <Leader>P <Plug>ToggleProject
 nmap <silent> <leader>cd :exe 'cd ' . OpenDir<cr>:pwd<cr>
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
@@ -693,3 +755,190 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "end for neocomplete
 
 
+" Unite: {{{
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+"call unite#custom#source('file_rec/async','sorters','sorter_rank', )
+" replacing unite with ctrl-p
+"let g:unite_enable_split_vertically = 1
+
+let g:unite_source_file_mru_time_format = "%m/%d %T "
+let g:unite_source_directory_mru_limit = 80
+let g:unite_source_directory_mru_time_format = "%m/%d %T "
+let g:unite_source_file_rec_max_depth = 5
+
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_prompt='» '
+let g:unite_split_rule = 'botright'
+if executable('ag')
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_recursive_opt=''
+endif
+"nnoremap <silent> <c-p> :Unite -auto-resize file file_mru file_rec<cr>
+nnoremap <leader>xx :Unite -auto-resize file file_mru file_rec<cr>
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>mr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+
+
+"" File search
+
+nnoremap <silent><C-p> :Unite -no-split -start-insert file_rec buffer<CR>
+
+"" shortcup
+nnoremap <silent><leader>u  :<C-u>Unite -start-insert mapping<CR>
+
+"" Execute help.
+nnoremap <silent><leader>h  :Unite -start-insert -no-split help<CR>
+
+"" Tag search
+
+""" For searching the word in the cursor in tag file
+nnoremap <silent><leader>f :Unite -no-split tag:<C-R><C-w><CR>
+
+nnoremap <silent><leader>ff :Unite tag -start-insert -no-split<CR>
+
+"" grep dictionay
+
+""" For searching the word in the cursor in the current directory
+nnoremap <silent><leader>s :Unite -no-split grep:.::<C-R><C-w><CR>
+
+""" For searching the word handin
+nnoremap <silent><leader>ss :Unite -no-split grep:.<CR>
+
+""" For searching the word in the cursor in the current buffer
+noremap <silent><leader>sf :Unite -no-split grep:%::<C-r><C-w><CR>
+
+""" For searching the word in the cursor in all opened buffer
+noremap <silent><leader>sa :Unite -no-split grep:$buffers::<C-r><C-w><CR>
+
+let g:unite_source_grep_default_opts = "-iRHn"
+\ . " --exclude='tags'"
+\ . " --exclude='cscope*'"
+\ . " --exclude='*.svn*'"
+\ . " --exclude='*.log*'"
+\ . " --exclude='*tmp*'"
+\ . " --exclude-dir='**/tmp'"
+\ . " --exclude-dir='CVS'"
+\ . " --exclude-dir='.svn'"
+\ . " --exclude-dir='.git'"
+\ . " --exclude-dir='node_modules'"
+
+"" outline
+nnoremap <leader>o :Unite -start-insert -no-split outline<CR>
+
+"" Line search
+nnoremap <leader>l :Unite line -start-insert -no-split<CR>
+
+"" Yank history
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank history/yank<cr>
+
+
+" search plugin
+" :Unite neobundle/search
+
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Play nice with supertab
+  let b:SuperTabDisabled=1
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+nnoremap <space>/ :Unite grep:.<cr>
+
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
+
+
+" settings of cscope.
+" I use GNU global instead cscope because global is faster.
+set cscopetag
+set cscopeprg=gtags-cscope
+cs add /home/chenchunsheng/qc4.4_20140513/GTAGS
+
+set cscopequickfix=c-,d-,e-,f-,g0,i-,s-,t-
+nmap <silent> <leader>j <ESC>:cstag <c-r><c-w><CR>
+nmap <silent> <leader>g <ESC>:lcs f c <c-r><c-w><cr>:lw<cr>
+nmap <silent> <leader>s <ESC>:lcs f s <c-r><c-w><cr>:lw<cr>
+command! -nargs=+ -complete=dir FindFiles :call FindFiles(<f-args>)
+au VimEnter * call VimEnterCallback()
+au BufAdd *.[ch] call FindGtags(expand('<afile>'))
+au BufWritePost *.[ch] call UpdateGtags(expand('<afile>'))
+  
+function! FindFiles(pat, ...)
+     let path = ''
+     for str in a:000
+         let path .= str . ','
+     endfor
+  
+     if path == ''
+         let path = &path
+     endif
+  
+     echo 'finding...'
+     redraw
+     call append(line('$'), split(globpath(path, a:pat), '\n'))
+     echo 'finding...done!'
+     redraw
+endfunc
+  
+function! VimEnterCallback()
+     for f in argv()
+         if fnamemodify(f, ':e') != 'c' && fnamemodify(f, ':e') != 'h'
+             continue
+         endif
+  
+         call FindGtags(f)
+     endfor
+endfunc
+  
+function! FindGtags(f)
+     let dir = fnamemodify(a:f, ':p:h')
+     while 1
+         let tmp = dir . '/GTAGS'
+         if filereadable(tmp)
+             exe 'cs add ' . tmp . ' ' . dir
+             break
+         elseif dir == '/'
+             break
+         endif
+  
+         let dir = fnamemodify(dir, ":h")
+     endwhile
+endfunc
+  
+function! UpdateGtags(f)
+     let dir = fnamemodify(a:f, ':p:h')
+     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
+endfunction
+
+"for unite-gtags
+
+nnoremap <leader>gd :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+nnoremap <leader>gc :execute 'Unite gtags/context'<CR>
+nnoremap <leader>gr :execute 'Unite gtags/ref'<CR>
+nnoremap <leader>gg :execute 'Unite gtags/grep'<CR>
+nnoremap <leader>gp :execute 'Unite gtags/completion'<CR>
+vnoremap <leader>gd <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
+
+let g:unite_source_gtags_project_config = {
+  \ '_':                   { 'treelize': 0 }
+  \ }
+" specify your project path as key.
+" '_' in key means default configuration.

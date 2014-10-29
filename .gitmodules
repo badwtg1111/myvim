@@ -31,12 +31,6 @@
 [submodule "bundle/Command-T"]
 	path = bundle/Command-T
 	url = https://github.com/wincent/Command-T.git
-[submodule "bundle/ctrlp-funky"]
-	path = bundle/ctrlp-funky
-	url = https://github.com/tacahiroy/ctrlp-funky.git
-[submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/vim-diff-toggle"]
 	path = bundle/vim-diff-toggle
 	url = https://github.com/twe4ked/vim-diff-toggle.git
@@ -70,9 +64,6 @@
 [submodule "bundle/mark.vim"]
 	path = bundle/mark.vim
 	url = https://github.com/paulhybryant/mark.git
-[submodule "bundle/flagit"]
-	path = bundle/flagit
-	url = https://github.com/paulrouget/flagit.git
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = https://github.com/godlygeek/csapprox.git
@@ -112,3 +103,9 @@
 [submodule "/home/chenchunsheng/.vim/bundle/auto-pairs"]
 	path = /home/chenchunsheng/.vim/bundle/auto-pairs
 	url = git://github.com/jiangmiao/auto-pairs.git
+[submodule "bundle/gtags.vim"]
+	path = bundle/gtags.vim
+	url = git@github.com:vim-scripts/gtags.vim.git
+[submodule "bundle/neobundle.vim"]
+	path = bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim
