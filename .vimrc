@@ -59,7 +59,7 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'tacroe/unite-alias'
-NeoBundle 'ujihisa/quicklearn'
+"NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tex/vim-unite-id'
 
 
@@ -421,11 +421,11 @@ nnoremap <space> :
 vnoremap <space> :
 " Switching between buffers.
 nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
+"nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 inoremap <C-h> <Esc><C-W>h
-inoremap <C-j> <Esc><C-W>j
+"inoremap <C-j> <Esc><C-W>j
 inoremap <C-k> <Esc><C-W>k
 inoremap <C-l> <Esc><C-W>l
 " "cd" to change to open directory.
@@ -760,8 +760,7 @@ let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 let g:unite_prompt='>> '
-"let g:unite_split_rule = 'topleft'     "right'
-let g:unite_split_rule = 'botright'
+"let g:unite_split_rule = 'botright'
 
 let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude='tags'"
@@ -808,7 +807,12 @@ nnoremap <silent> [unite]b  :<C-u>UniteWithBufferDir
 nnoremap <silent> [unite]r  :<C-u>Unite
             \ -buffer-name=register register<CR>
 nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
-nnoremap <silent> [unite]f
+
+nnoremap <silent> [unite]s  :<C-u>Unite session<CR>
+nnoremap <silent> [unite]n  :<C-u>Unite session/new<CR>
+
+
+nnoremap <silent> [unite]fr
             \ :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [unite]ma
             \ :<C-u>Unite mapping<CR>
@@ -816,7 +820,7 @@ nnoremap <silent> [unite]me
             \ :<C-u>Unite output:message<CR>
 nnoremap  [unite]f  :<C-u>Unite source<CR>
 
-nnoremap <silent> [unite]s
+nnoremap <silent> [unite]w
             \ :<C-u>Unite -buffer-name=files -no-split
             \ jump_point file_point buffer_tab
             \ file_rec:! file file/new<CR>
@@ -835,7 +839,7 @@ nnoremap <silent> [unite]s
 
 " Prompt choices.
 "call unite#custom#profile('default', 'context', {
-"\   'prompt': '» ',
+"\   'prompt': '>> ',
 "\ })
 
 autocmd FileType unite call s:unite_my_settings()
@@ -857,7 +861,8 @@ function! s:unite_my_settings()"{{{
     imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
     imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
     nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+    nmap <buffer> <C-e>     <Plug>(unite_toggle_auto_preview)
+    imap <buffer> <C-e>     <Plug>(unite_toggle_auto_preview)
     nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
     imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
     nnoremap <silent><buffer><expr> l
@@ -928,7 +933,7 @@ noremap <silent><leader>va :Unite -auto-preview -no-split grep:$buffers::<C-r><C
 "" outline
 "nnoremap <leader>o :Unite -start-insert -no-split outline<CR>
 
-nnoremap <leader>o :<C-u>Unite -auto-preview -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline  -auto-preview -start-insert -no-split outline<cr>
 "" Line search
 nnoremap <leader>l :Unite line -auto-preview -start-insert -no-split<CR>
 
@@ -947,8 +952,8 @@ function! s:unite_settings()
   " Play nice with supertab
   let b:SuperTabDisabled=1
   " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
 nnoremap <space>s :Unite -quick-match -auto-preview buffer<cr>
@@ -1112,12 +1117,12 @@ nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
 
 "for unite-gtags {{{
 
-nnoremap <leader>gd :execute 'Unite -auto-preview gtags/def:'.expand('<cword>')<CR>
-nnoremap <leader>gc :execute 'Unite -auto-preview gtags/context'<CR>
-nnoremap <leader>gr :execute 'Unite -auto-preview gtags/ref'<CR>
-nnoremap <leader>gg :execute 'Unite -auto-preview gtags/grep'<CR>
-nnoremap <leader>gp :execute 'Unite -auto-preview gtags/completion'<CR>
-vnoremap <leader>gd <ESC>:execute 'Unite -auto-preview gtags/def:'.GetVisualSelection()<CR>
+nnoremap <leader>gd :execute 'Unite  -auto-preview -start-insert -no-split  gtags/def:'.expand('<cword>')<CR>
+nnoremap <leader>gc :execute 'Unite  -auto-preview -start-insert -no-split gtags/context'<CR>
+nnoremap <leader>gr :execute 'Unite  -auto-preview -start-insert -no-split gtags/ref'<CR>
+nnoremap <leader>gg :execute 'Unite  -auto-preview -start-insert -no-split gtags/grep'<CR>
+nnoremap <leader>gp :execute 'Unite  -auto-preview -start-insert -no-split gtags/completion'<CR>
+vnoremap <leader>gd <ESC>:execute 'Unite -auto-preview -start-insert -no-split gtags/def:'.GetVisualSelection()<CR>
 
 let g:unite_source_gtags_project_config = {
   \ '_':                   { 'treelize': 0 }
@@ -1132,5 +1137,5 @@ let g:vimfiler_as_default_explorer = 1
 "}}}
 
 "for quicklearn {{{
-nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
+"nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
 "}}}
