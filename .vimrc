@@ -170,6 +170,9 @@ match WhitespaceEOL /\s\+$/
 set ts=4
 set expandtab
 
+" Set mapleader
+let mapleader=","
+
 "set backspace=indent,eol,start
 
 " for qt-cppcomplete, added by LiaoLiang Nov28,2008
@@ -189,30 +192,84 @@ set tags+=/home/chenchunsheng/qc4.4_20140513/development/tags
 
 "set tags+=/home/chenchunsheng/workdir/test_tiff/jni/tags
 
-"cs add /home/chenchunsheng/workdir/test_tiff/jni/cscope.out /home/chenchunsheng/workdir/test_tiff/jni
-cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages 
-cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development 
 
 " for qc4.4
 set tags+=/home/chenchunsheng/qc4.4_20140513/vendor/tags
-cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor 
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/tags
-cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
-cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external 
 
 " for lte-mol
 "set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
-"cs add /home/chenchunsheng/lte-mol/frameworks/cscope.out /home/chenchunsheng/lte-mol/frameworks
 
 "set tags+=/home/chenchunsheng/lte-mol/vendor/tags
+
+
+
+"for cscope {{{
+
+
+if has("cscope") && filereadable("/usr/bin/cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+       cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+       cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+"cscope设置
+"set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+"nmap s :cs find s =expand("") 
+" :cw    "查找声明
+"nmap g :cs find g =expand("") 
+":cw     "查找定义
+"nmap c :cs find c =expand("") 
+":cw    "查找调用
+"nmap t :cs find t =expand("") :cw    
+"查找指定的字符串
+"nmap e :cs find e =expand("") 
+":cw    "查找egrep模式，相当于egrep功能，但查找速度快多了
+"nmap f :cs find f =expand("") 
+":cw    "查找文件
+"nmap i :cs find i ^=expand("")$ 
+":cw   "查找包含本文件的文件
+"nmap d :cs find d =expand("")  
+":cw   "查找本函数调用的函数
+nmap <leader>sa :cs add cscope.out<cr>
+nmap <leader>sb :cs add $CSCOPE_DB $PROJ<cr>
+
+nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
+nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
+nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
+nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
+
+nmap <F12> :call RunShell("Generate cscope", "cscope -Rb")<cr>:cs add cscope.out<cr>
+
+"for qc4.4
+"cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages 
+"cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development 
+"cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor 
+"cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external 
+"cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks
+
+"
+"cs add /home/chenchunsheng/workdir/test_tiff/jni/cscope.out /home/chenchunsheng/workdir/test_tiff/jni
+" for lte
+"cs add /home/chenchunsheng/lte-mol/frameworks/cscope.out /home/chenchunsheng/lte-mol/frameworks
 "cs add /home/chenchunsheng/lte-mol/vendor/cscope.out /home/chenchunsheng/lte-mol/vendor
-
-
-
-
+"}}}
 
 
 
@@ -432,8 +489,6 @@ inoremap <C-l> <Esc><C-W>l
 let OpenDir=system("pwd")
 
 " PLUGIN SETTINGS: {{{1
-" Set mapleader
-let mapleader=","
 " taglist.vim
 let g:Tlist_Auto_Update=1
 let g:Tlist_Process_File_Always=1
@@ -761,7 +816,7 @@ let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 let g:unite_prompt='>> '
 "let g:unite_split_rule = 'botright'
-
+let g:unite_winheight=30
 let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude='tags'"
 \ . " --exclude='cscope*'"
@@ -1002,48 +1057,6 @@ nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
 "}}}
 
 
-"for cscope {{{
-nmap <F12> :call RunShell("Generate cscope", "cscope -Rb")<cr>:cs add cscope.out<cr>
-
-" cscope.vim
-if has("cscope")
-    set csto=1
-    set cst
-    set nocsverb
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
-    set csverb
-endif
-"cscope设置
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-"nmap s :cs find s =expand("") 
-" :cw    "查找声明
-"nmap g :cs find g =expand("") 
-":cw     "查找定义
-"nmap c :cs find c =expand("") 
-":cw    "查找调用
-"nmap t :cs find t =expand("") :cw    
-"查找指定的字符串
-"nmap e :cs find e =expand("") 
-":cw    "查找egrep模式，相当于egrep功能，但查找速度快多了
-"nmap f :cs find f =expand("") 
-":cw    "查找文件
-"nmap i :cs find i ^=expand("")$ 
-":cw   "查找包含本文件的文件
-"nmap d :cs find d =expand("")  
-":cw   "查找本函数调用的函数
-nmap <leader>sa :cs add cscope.out<cr>
-nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sg :cs find g <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sc :cs find c <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>st :cs find t <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>se :cs find e <C-R>=expand("<cword>")<cr><cr>
-nmap <leader>sf :cs find f <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>si :cs find i <C-R>=expand("<cfile>")<cr><cr>
-nmap <leader>sd :cs find d <C-R>=expand("<cword>")<cr><cr>
-"}}}
 
 "for gtags-cscope {{{
 "" settings of cscope.
