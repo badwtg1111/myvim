@@ -62,6 +62,46 @@ NeoBundle 'tacroe/unite-alias'
 "NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tex/vim-unite-id'
 
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'vim-scripts/TagHighlight'
+NeoBundle 'Lokaltog/powerline-fonts'
+NeoBundle 'bling/vim-airline'
+
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'vim-scripts/L9'
+NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'twe4ked/vim-diff-toggle'
+NeoBundle 'vim-scripts/NERD_tree-Project'
+NeoBundle 'rstacruz/sparkup'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'jaromero/vim-monokai-refined'
+NeoBundle 'dyng/ctrlsf.vim'
+NeoBundle 'ianva/vim-youdao-translater'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'hari-rangarajan/CCTree'
+NeoBundle 'vimwiki/vimwiki'
+NeoBundle 'paulhybryant/mark'
+NeoBundle 'godlygeek/csapprox'
+NeoBundle 'john2x/x-marks-the-spot.vim'
+NeoBundle 'Twinside/vim-cuteErrorMarker'
+NeoBundle 'jeetsukumaran/vim-markology'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'vim-scripts/echofunc.vim'
+NeoBundle 'vim-scripts/winmanager--Fox'
+NeoBundle 'vim-scripts/a.vim'
+NeoBundle 'scrooloose/syntastic'
+
+
+
+
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
