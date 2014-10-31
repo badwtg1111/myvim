@@ -110,6 +110,7 @@ NeoBundle 'vim-scripts/buftabs'
 "NeoBundle 'abudden/taghighlight-automirror'
 NeoBundle 'vim-scripts/TagHighlight'
 
+NeoBundle 'vim-scripts/ctags.vim'
 
 
 
@@ -236,7 +237,6 @@ let mapleader=","
 "set tags+=/home/badwtg1111/cpp
 "
 set tags+=/home/chenchunsheng/qc4.4_20140513/packages/tags
-set tags+=/home/chenchunsheng/qc4.4_20140513/system/.tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/development/tags
 
 
@@ -247,6 +247,7 @@ set tags+=/home/chenchunsheng/qc4.4_20140513/development/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/vendor/tags
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/tags
+set tags+=/home/chenchunsheng/qc4.4_20140513/system/tags
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
 
@@ -296,7 +297,8 @@ endif
 nmap <leader>sa :cs add cscope.out<cr>
 nmap <leader>sq :cs add $CSCOPE_DB $PROJ<cr>
 
-nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>
+nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
+
 
 
 nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
