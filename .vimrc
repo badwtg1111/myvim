@@ -270,7 +270,7 @@ if has("cscope") && filereadable("/usr/bin/cscope")
        cs add cscope.out
     " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
-       cs add $CSCOPE_DB
+       cs add $CSCOPE_DB $PROJ
     endif
     set csverb
 endif
