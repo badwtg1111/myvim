@@ -25,9 +25,6 @@
 [submodule "bundle/calendar.vim"]
 	path = bundle/calendar.vim
 	url = https://github.com/itchyny/calendar.vim.git
-[submodule "bundle/Command-T"]
-	path = bundle/Command-T
-	url = https://github.com/wincent/Command-T.git
 [submodule "bundle/vim-diff-toggle"]
 	path = bundle/vim-diff-toggle
 	url = https://github.com/twe4ked/vim-diff-toggle.git
