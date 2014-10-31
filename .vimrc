@@ -14,6 +14,7 @@ if has('vim_starting')
 
     " Required:
     set runtimepath+=~/.vim/bundle/neobundle.vim/
+
 endif
 
 " Required:
@@ -23,11 +24,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-        let g:make = 'make'
-endif
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite-outline'
@@ -62,12 +59,12 @@ NeoBundle 'tacroe/unite-alias'
 "NeoBundle 'ujihisa/quicklearn'
 NeoBundle 'tex/vim-unite-id'
 
+"NeoBundle 'dyng/ctrlsf.vim'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'vim-scripts/TagHighlight'
 NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundle 'bling/vim-airline'
 
@@ -80,7 +77,6 @@ NeoBundle 'vim-scripts/NERD_tree-Project'
 NeoBundle 'rstacruz/sparkup'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'jaromero/vim-monokai-refined'
-NeoBundle 'dyng/ctrlsf.vim'
 NeoBundle 'ianva/vim-youdao-translater'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'hari-rangarajan/CCTree'
@@ -91,14 +87,28 @@ NeoBundle 'john2x/x-marks-the-spot.vim'
 NeoBundle 'Twinside/vim-cuteErrorMarker'
 NeoBundle 'jeetsukumaran/vim-markology'
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'vim-scripts/echofunc.vim'
 NeoBundle 'vim-scripts/winmanager--Fox'
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle has('lua') ? 'Shougo/neocomplete.vim' : 'Shougo/neocomplcache.vim'
 
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
+NeoBundle 'vim-scripts/buftabs'
+
+"set rtp+=~/.vim/bundle/TagHighlight/
+"NeoBundle 'https://bitbucket.org/abudden/taghighlight', {'type' : 'hg'}
+"NeoBundle 'abudden/taghighlight-automirror'
+NeoBundle 'vim-scripts/TagHighlight'
 
 
 
@@ -626,7 +636,7 @@ set laststatus=2   " Always show the statusline
             "\ 'LINE': 'L',
             "\ }
 "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 function! AccentDemo()
     let keys = ['a','b','c','d','e','f','g','h']
@@ -663,10 +673,6 @@ noremap <C-Right> <C-W>l
 noremap <Leader>n1 :MBEbn<CR>
 noremap <Leader>p :MBEbp<CR>
 
-" CtrlSF
-nnoremap <C-F> :CtrlSF<space>
-nmap <Leader>cf :CtrlSF <c-r><c-w><CR>
-nmap <Leader>csf :CtrlSFOpen<CR>
 
 "youdao
 vnoremap <silent> <C-K> <Esc>:Ydv<CR> 
@@ -1192,3 +1198,34 @@ let g:vimfiler_as_default_explorer = 1
 "for quicklearn {{{
 "nnoremap <space>R :<C-u>Unite quicklearn -immediately<Cr>
 "}}}
+
+"for buftabs {{{
+noremap <C-left> :bprev<CR>
+noremap <C-right> :bnext<CR>
+"}}}
+
+"for taghighlight {{{
+"
+""let s:plugin_paths = split(globpath(&rtp, 'plugin/TagHighlight/TagHighlight.py'), '\n') --> in taghighlight.vim
+""let s:plugin_paths = split('~/.vim/bundle/TagHighlight/plugin/TagHighlight/TagHighlight.py', '\n')
+"
+"
+"hi Class                ctermfg=205   cterm=bold
+"hi Structure            ctermfg=205   cterm=bold
+"hi DefinedName          ctermfg=49    cterm=bold
+"hi Member              ctermfg=244
+"hi Label                   ctermfg=21    cterm=bold
+"hi EnumerationName      ctermfg=19
+"hi EnumerationValue     ctermfg=57
+"hi LocalVariable        ctermfg=100
+"hi GlobalVariable       ctermfg=93
+
+"}}}
+
+
+" CtrlSF {{{
+"nnoremap <C-F> :CtrlSF<space>
+"nmap <Leader>cf :CtrlSF <c-r><c-w><CR>
+"nmap <Leader>csf :CtrlSFOpen<CR>
+"}}}
+
