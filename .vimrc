@@ -444,11 +444,11 @@ func MayComplete()
 	return "\<Space>"
 endfunc
 
-inoremap <expr> <CR> StateChangeEnter()
-func StateChangeEnter()
-	let g:pumselect = 0 
-	return "\<CR>"
-endfunc
+"inoremap <expr> <CR> StateChangeEnter()
+"func StateChangeEnter()
+	"let g:pumselect = 0 
+	"return "\<CR>"
+"endfunc
 
 
 let g:winManagerWindowLayout='FileExplorer|Tagbar'
@@ -856,22 +856,22 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#profile('default', 'context', {'no_split':1, 'resize':0})
 
 
-" ------------  define custom action -------------------------------------------
-" file_association
-let s:file_association = {
-\   'description' : 'open withd file associetion'
-\    , 'is_selectable' : 1
-\    }
+"" ------------  define custom action -------------------------------------------
+"" file_association
+"let s:file_association = {
+"\   'description' : 'open withd file associetion'
+"\    , 'is_selectable' : 1
+"\    }
 
-function! s:file_association.func(candidates)
-    for l:candidate in a:candidates
-        " .vimrcに関数の定義有り
-        call OpenFileAssociation(l:candidate.action__path)
-    endfor
-endfunction
+"function! s:file_association.func(candidates)
+    "for l:candidate in a:candidates
+        "" .vimrcに関数の定義有り
+        "call OpenFileAssociation(l:candidate.action__path)
+    "endfor
+"endfunction
 
-call unite#custom_action('openable', 'file_association', s:file_association)
-unlet s:file_association
+"call unite#custom_action('openable', 'file_association', s:file_association)
+"unlet s:file_association
 
 
 
@@ -981,12 +981,12 @@ function! s:unite_my_settings()"{{{
     " Play nice with supertab
     let b:SuperTabDisabled=1
     " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-n>   <Plug>(unite_select_next_line)
-    nmap <buffer> <C-n>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-p>   <Plug>(unite_select_previous_line)
-    nmap <buffer> <C-p>   <Plug>(unite_select_previous_line)
-    nmap <buffer> <expr> <CR>   unite#do_action('open')
-    imap <buffer> <expr> <CR>   unite#do_action('open')
+    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    nmap <buffer> <C-j>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    nmap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    
+
 
     imap <buffer> jj      <Plug>(unite_insert_leave)
     "imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
@@ -1077,7 +1077,7 @@ noremap <silent><leader>va :Unite -auto-preview -no-split grep:$buffers::<C-r><C
 
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline   -start-insert -auto-preview -no-split outline<cr>
 "" Line search
-nnoremap <leader>l :Unite line -start-insert   -auto-preview -no-split<CR>
+nnoremap <leader>l :Unite line -start-insert  -auto-preview -no-split<CR>
 
 "" Yank history
 nnoremap <leader>y :<C-u>Unite -no-split -auto-preview -buffer-name=yank history/yank<cr>
