@@ -122,7 +122,10 @@ NeoBundle 'junkblocker/unite-codesearch'
 call neobundle#end()
 
 " Required:
+" Enable file type detection.
 filetype plugin indent on
+" Syntax highlighting.
+syntax on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
@@ -179,12 +182,11 @@ NeoBundleCheck
 "--------------------------------------------------------------------------------
 
 
-syntax on
-filetype plugin indent on
 
-"vim paste
+"vim paste {{{
 set clipboard=unnamed
 set pastetoggle=<F4>
+"}}}
 
 
 "set guifont=Courier\ New\ 14
@@ -195,23 +197,7 @@ set t_Co=256
 
 "command -range=%chen :ConqueTermSplit bash
 
-" comment for ctrlp {{{
-"set runtimepath^=~/.vim/bundle/ctrlp.vim 
-""let g:ctrlp_map = ',,'
-""let g:ctrlp_open_multiple_files = 'v'
 
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-"let g:ctrlp_custom_ignore = {
-  "\ 'dir':  '\v[\/]\.(git)$',
-  "\ 'file': '\v\.(log|jpg|png|jpeg)$',
-  "\ }
-
-"}}}
-
-"set rtp+=~/.vim/bundle/NERD_tree-Project 
-"let g:NTPNames = add(g:NTPNames, 'SConstruct')
-"let g:NTPNames = add(g:NTPNames, '.git')
-"extend(g:NTPNames, ['*.sln', '*.csproj','.git','.project','SConstruct'])
 
 set list
 set listchars=tab:>-,trail:-
@@ -399,7 +385,6 @@ let Tlist_Use_Horiz_Window=0
 
 " for omnicppcomplete, added by LiaoLiang Nov28,2008
 set nocp
-filetype plugin indent on
 let OmniCpp_DefaultNamespaces = ["std"]
 filetype plugin on
 " :help omnicppcomplete
@@ -464,10 +449,6 @@ nmap wm :WMToggle<cr>
 " GENERAL SETTINGS: {{{1
 " To use VIM settings, out of VI compatible mode.
 set nocompatible
-" Enable file type detection.
-filetype plugin indent on
-" Syntax highlighting.
-syntax on
 " Setting colorscheme
 "color mycolor
 "color desert
@@ -553,13 +534,6 @@ let g:Tlist_Show_One_File=1
 let g:Tlist_WinWidth=25
 let g:Tlist_Enable_Fold_Column=0
 let g:Tlist_Auto_Highlight_Tag=1
-" NERDTree.vim
-let g:NERDTreeMouseMode=2
-let g:NERDTreeAutoCenter=1
-let g:NERDTreeWinPos="left"
-let g:NERDTreeWinSize=25
-let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeQuitOnOpen=0
 " OmniCppComplete.vim
 let g:OmniCpp_DefaultNamespaces=["std"]
 let g:OmniCpp_MayCompleteScope=1
@@ -597,12 +571,6 @@ nnoremap <silent> <F2> :TagbarToggle<CR>
 "nnoremap <Leader>t :TagbarToggle<CR>
 let g:tagbar_left = 1
 
-nmap  <F3> :ToggleNERDTree<cr>
-"let NERDTreeWinPos='left'
-"nnoremap <silent> <leader>f :NERDTreeFind<CR>
-let g:NTPNames = ['.git','build.xml', 'Makefile', '.project', '.lvimrc','Android.mk']
-let g:NTPNames = add(g:NTPNames, 'SConstruct')
-call extend(g:NTPNames, ['*.sln', '*.csproj'])
 
 nmap  <F5> :MRU<cr>
 nmap  <F8> <Plug>LookupFile<cr>
@@ -616,8 +584,23 @@ nmap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh
 
 nnoremap <silent> <leader>g :Grep<CR> 
 
-nmap <leader>zz <C-w>o
 nmap <leader>gs :GetScripts<cr>
+
+
+
+
+" comment for ctrlp {{{
+"set runtimepath^=~/.vim/bundle/ctrlp.vim 
+""let g:ctrlp_map = ',,'
+""let g:ctrlp_open_multiple_files = 'v'
+
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/]\.(git)$',
+  "\ 'file': '\v\.(log|jpg|png|jpeg)$',
+  "\ }
+
+"}}}
 
 " comment for ctrlp-funky {{{
 "let g:ctrlp_extensions = ['funky']
@@ -630,10 +613,9 @@ nmap <leader>gs :GetScripts<cr>
 
 
 
-nmap <silent> <Leader>P <Plug>ToggleProject
-nmap <silent> <leader>cd :exe 'cd ' . OpenDir<cr>:pwd<cr>
-nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
+
+"for airline {{{
 "Powerline
 "let g:Powerline_symbols = 'unicode'
 set laststatus=2   " Always show the statusline
@@ -659,12 +641,35 @@ function! AccentDemo()
     call airline#parts#define_accent('h', 'italic')
     let g:airline_section_a = airline#section#create(keys)
 endfunction
+"}}}
+
+
+" NERDTree.vim {{{
+let g:NERDTreeMouseMode=2
+let g:NERDTreeAutoCenter=1
+let g:NERDTreeWinPos="left"
+let g:NERDTreeWinSize=25
+let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeQuitOnOpen=0
+
+nmap  <F3> :ToggleNERDTree<cr>
+"let NERDTreeWinPos='left'
+"nnoremap <silent> <leader>f :NERDTreeFind<CR>
+let g:NTPNames = ['.git','build.xml', 'Makefile', '.project', '.lvimrc','Android.mk']
+let g:NTPNames = add(g:NTPNames, 'SConstruct')
+call extend(g:NTPNames, ['*.sln', '*.csproj'])
+
 "autocmd VimEnter * call AccentDemo()
 map <Leader>nn <plug>NERDTreeTabsToggle<CR>
 
-map <Leader>mbe :MBEOpen<cr>
-map <Leader>mbc :MBEClose<cr>
-map <Leader>mbt :MBEToggle<cr>
+"set rtp+=~/.vim/bundle/NERD_tree-Project 
+"let g:NTPNames = add(g:NTPNames, 'SConstruct')
+"let g:NTPNames = add(g:NTPNames, '.git')
+"extend(g:NTPNames, ['*.sln', '*.csproj','.git','.project','SConstruct'])
+
+"}}}
+
+
 " If you like control + arrow key to navigate windows
 " then perform the remapping
 "
@@ -672,22 +677,36 @@ noremap <C-Down>  <C-W>j
 noremap <C-Up>    <C-W>k
 noremap <C-Left>  <C-W>h
 noremap <C-Right> <C-W>l
+nmap <leader>zz <C-w>o
+
+nmap <silent> <Leader>P <Plug>ToggleProject
+nmap <silent> <leader>cd :exe 'cd ' . OpenDir<cr>:pwd<cr>
+nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
 " If you like <C-TAB> and <C-S-TAB> to switch buffers
 " in the current window then perform the remapping
-"
+"minibufexpl {{{
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
 noremap <Leader>n1 :MBEbn<CR>
 noremap <Leader>p :MBEbp<CR>
+"}}}
 
 
-"youdao
+"youdao {{{
 vnoremap <silent> <leader>ydv <Esc>:Ydv<CR> 
 nnoremap <silent> <leader>ydc <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
-"for indentLine
-let g:indentLine_color_term = 112
+"}}}
 
-" cctree highlight setting
+
+"for indentLine {{{
+let g:indentLine_color_term = 112
+"}}}
+
+
+" cctree highlight setting {{{
 highlight CCTreeHiSymbol  gui=bold guifg=yellow guibg=darkblue ctermfg=yellow ctermbg=darkblue
 highlight CCTreeHiMarkers  gui=bold guifg=yellow guibg=darkblue ctermfg=yellow ctermbg=darkblue
 highlight Ignore ctermfg=black guifg=bg
@@ -757,12 +776,15 @@ set updatetime=0
 "            g:CCTreeKeyDepthPlus = '<C-\>='"            
 "            g:CCTreeKeyDepthMinus = '<C-\>-'
 "CCtree.Vim  C Call-Tree Explorer   源码浏览工具关系树(赞)"}}}
+"}}}
 
-"x-marks-the-spot
+
+"x-marks-the-spot {{{
 "nmap <unique> <C-BS> <Plug>XmarksthespotNextmark
+"}}}
 
 
-"for neocomplete
+"for neocomplete {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -847,6 +869,7 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "end for neocomplete
+"}}}
 
 
 " Unite: {{{
