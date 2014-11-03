@@ -112,6 +112,7 @@ NeoBundle 'vim-scripts/TagHighlight'
 
 NeoBundle 'vim-scripts/ctags.vim'
 
+NeoBundle 'junkblocker/unite-codesearch'
 
 
 " My Bundles here:
@@ -534,11 +535,11 @@ vnoremap <space> :
 " Switching between buffers.
 nnoremap <C-h> <C-W>h
 "nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
+"nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 inoremap <C-h> <Esc><C-W>h
 "inoremap <C-j> <Esc><C-W>j
-inoremap <C-k> <Esc><C-W>k
+"inoremap <C-k> <Esc><C-W>k
 inoremap <C-l> <Esc><C-W>l
 " "cd" to change to open directory.
 let OpenDir=system("pwd")
@@ -680,8 +681,8 @@ noremap <Leader>p :MBEbp<CR>
 
 
 "youdao
-vnoremap <silent> <C-K> <Esc>:Ydv<CR> 
-nnoremap <silent> <C-K> <Esc>:Ydc<CR> 
+vnoremap <silent> <leader>ydv <Esc>:Ydv<CR> 
+nnoremap <silent> <leader>ydc <Esc>:Ydc<CR> 
 noremap <leader>yd :Yde<CR>
 "for indentLine
 let g:indentLine_color_term = 112
@@ -852,13 +853,35 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#profile('default', 'context', {'no_split':1, 'resize':0})
+
+
+" ------------  define custom action -------------------------------------------
+" file_association
+let s:file_association = {
+\   'description' : 'open withd file associetion'
+\    , 'is_selectable' : 1
+\    }
+
+function! s:file_association.func(candidates)
+    for l:candidate in a:candidates
+        " .vimrcに関数の定義有り
+        call OpenFileAssociation(l:candidate.action__path)
+    endfor
+endfunction
+
+call unite#custom_action('openable', 'file_association', s:file_association)
+unlet s:file_association
+
+
+
 "call unite#custom#source('file_rec/async','sorters','sorter_rank', )
 " replacing unite with ctrl-p
 "let g:unite_enable_split_vertically = 1
 let g:unite_source_file_mru_time_format = "%m/%d %T "
 let g:unite_source_directory_mru_limit = 80
 let g:unite_source_directory_mru_time_format = "%m/%d %T "
-let g:unite_source_file_rec_max_depth = 5
+let g:unite_source_file_rec_max_depth = 6
 
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
@@ -866,8 +889,8 @@ let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 let g:unite_prompt='>> '
-"let g:unite_split_rule = 'botright'
-let g:unite_winheight=30
+let g:unite_split_rule = 'botright'
+let g:unite_winheight=25
 let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude='tags'"
 \ . " --exclude='cscope*'"
@@ -948,9 +971,22 @@ nnoremap <silent> [unite]w
 "\   'prompt': '>> ',
 "\ })
 
+
+
+" Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
     " Overwrite settings.
+
+    " Play nice with supertab
+    let b:SuperTabDisabled=1
+    " Enable navigation with control-j and control-k in insert mode
+    imap <buffer> <C-n>   <Plug>(unite_select_next_line)
+    nmap <buffer> <C-n>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-p>   <Plug>(unite_select_previous_line)
+    nmap <buffer> <C-p>   <Plug>(unite_select_previous_line)
+    nmap <buffer> <expr> <CR>   unite#do_action('open')
+    imap <buffer> <expr> <CR>   unite#do_action('open')
 
     imap <buffer> jj      <Plug>(unite_insert_leave)
     "imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
@@ -1039,9 +1075,9 @@ noremap <silent><leader>va :Unite -auto-preview -no-split grep:$buffers::<C-r><C
 "" outline
 "nnoremap <leader>o :Unite -start-insert -no-split outline<CR>
 
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline  -auto-preview -start-insert -no-split outline<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline   -start-insert -auto-preview -no-split outline<cr>
 "" Line search
-nnoremap <leader>l :Unite line -auto-preview -start-insert -no-split<CR>
+nnoremap <leader>l :Unite line -start-insert   -auto-preview -no-split<CR>
 
 "" Yank history
 nnoremap <leader>y :<C-u>Unite -no-split -auto-preview -buffer-name=yank history/yank<cr>
@@ -1052,15 +1088,6 @@ nnoremap <leader>y :<C-u>Unite -no-split -auto-preview -buffer-name=yank history
 " :Unite neobundle/search
 
 
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
-  "imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  "imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
 
 nnoremap <space>s :Unite -quick-match -auto-preview buffer<cr>
 
@@ -1234,3 +1261,9 @@ noremap <C-right> :bnext<CR>
 "nmap <Leader>csf :CtrlSFOpen<CR>
 "}}}
 
+" for codesearch{{{
+" Make search case insensitive
+let g:unite_source_codesearch_ignore_case = 1
+call unite#custom#source('codesearch', 'max_candidates', 30)
+
+"}}}
