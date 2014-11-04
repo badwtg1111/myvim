@@ -1298,7 +1298,7 @@ call unite#custom#source('codesearch', 'max_candidates', 30)
  
 " clang_complete 相关
 "  产生错误时打开 quickfix 窗口
-let g:clang_complete_copen = 1
+let g:clang_complete_copen = 0
 "  定期更新 quickfix 窗口
 let g:clang_periodic_quickfix = 1
 "  开启 code snippets 功能
