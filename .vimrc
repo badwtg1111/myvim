@@ -1295,3 +1295,29 @@ let g:unite_source_codesearch_ignore_case = 1
 call unite#custom#source('codesearch', 'max_candidates', 30)
 
 "}}}
+
+" for clang_complete {{{
+" 禁用补全时的预览窗口
+"set completeopt-=preview
+ 
+" clang_complete 相关
+"  产生错误时打开 quickfix 窗口
+let g:clang_complete_copen = 1
+"  定期更新 quickfix 窗口
+let g:clang_periodic_quickfix = 1
+"  开启 code snippets 功能
+let g:clang_snippets = 1
+let g:clang_complete_auto = 1
+
+let g:clang_close_preview=1  
+let g:clang_use_library=1  
+"let g:clang_user_options='-stdlib=libc++ -std=c++11 -IIncludePath'
+let g:clang_user_options=' -std=c++11 -IIncludePath'
+  
+let g:neocomplcache_enable_at_startup = 1 
+
+let g:clang_library_path="/usr/lib/llvm-3.5/lib/"
+let g:clang_auto_select=1
+"}}}
+
+
