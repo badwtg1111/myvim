@@ -119,6 +119,10 @@ NeoBundle 'vim-scripts/bufexplorer.zip'
 NeoBundle 'mbbill/code_complete'
 NeoBundle 'Rip-Rip/clang_complete'
 
+NeoBundle 'vim-scripts/lookupfile'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'vim-scripts/c.vim'
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -549,13 +553,6 @@ if has("gdb")
 	let g:vimgdb_debug_file=""
 	run macros/gdb_mappings.vim
 endif
-" LookupFile setting
-let g:LookupFile_TagExpr='"./tags.filename"'
-let g:LookupFile_MinPatLength=2
-let g:LookupFile_PreserveLastPattern=0
-let g:LookupFile_PreservePatternHistory=1
-let g:LookupFile_AlwaysAcceptFirst=1
-let g:LookupFile_AllowNewFiles=0
 " Man.vim
 source $VIMRUNTIME/ftplugin/man.vim
 nmap <C-M> :Man 3 <cword><CR>
@@ -578,7 +575,6 @@ let g:tagbar_left = 1
 
 
 nmap  <F5> :MRU<cr>
-nmap  <F8> <Plug>LookupFile<cr>
 nmap  <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
 nmap  <F9> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
 nmap <F10> :call HLUDSync()<cr>
@@ -1318,6 +1314,17 @@ let g:neocomplcache_enable_at_startup = 1
 
 let g:clang_library_path="/usr/lib/llvm-3.5/lib/"
 let g:clang_auto_select=1
+"}}}
+
+
+" LookupFile setting {{{
+let g:LookupFile_TagExpr='"./tags.filename"'
+let g:LookupFile_MinPatLength=2
+let g:LookupFile_PreserveLastPattern=0
+let g:LookupFile_PreservePatternHistory=1
+let g:LookupFile_AlwaysAcceptFirst=1
+let g:LookupFile_AllowNewFiles=0
+nmap  <F8> <Plug>LookupFile<cr>
 "}}}
 
 
