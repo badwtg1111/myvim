@@ -116,6 +116,8 @@ NeoBundle 'junkblocker/unite-codesearch'
 
 NeoBundle 'vim-scripts/bufexplorer.zip'
 "dos2unix -n plugin/bufexplorer.vim plugin/bufexplorer.vim
+NeoBundle 'mbbill/code_complete'
+NeoBundle 'Rip-Rip/clang_complete'
 
 
 " My Bundles here:
