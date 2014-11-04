@@ -114,6 +114,9 @@ NeoBundle 'vim-scripts/ctags.vim'
 
 NeoBundle 'junkblocker/unite-codesearch'
 
+NeoBundle 'vim-scripts/bufexplorer.zip'
+"dos2unix -n plugin/bufexplorer.vim plugin/bufexplorer.vim
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
