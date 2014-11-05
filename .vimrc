@@ -1005,10 +1005,10 @@ function! s:unite_my_settings()"{{{
     " Play nice with supertab
     let b:SuperTabDisabled=1
     " Enable navigation with control-j and control-k in insert mode
-    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    nmap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-    nmap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    imap <buffer> <C-n>   <Plug>(unite_select_next_line)
+    nmap <buffer> <C-n>   <Plug>(unite_select_next_line)
+    imap <buffer> <C-p>   <Plug>(unite_select_previous_line)
+    nmap <buffer> <C-p>   <Plug>(unite_select_previous_line)
     
 
 
@@ -1327,4 +1327,7 @@ let g:LookupFile_AllowNewFiles=0
 nmap  <F8> <Plug>LookupFile<cr>
 "}}}
 
-
+" 复制到系统剪切板 {{{
+map m "+y
+map p "*p
+"}}}
