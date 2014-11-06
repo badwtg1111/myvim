@@ -123,6 +123,8 @@ NeoBundle 'vim-scripts/lookupfile'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'vim-scripts/c.vim'
 
+NeoBundle 'tpope/vim-characterize'
+"NeoBundle 'chrisbra/unicode.vim'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -490,7 +492,6 @@ set   history=100
 set   hlsearch
 set   ignorecase
 set   incsearch
-set   laststatus=2
 set   mouse=a
 set   number
 set   pumheight=10
@@ -627,21 +628,33 @@ set laststatus=2   " Always show the statusline
 "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-function! AccentDemo()
-    let keys = ['a','b','c','d','e','f','g','h']
-    for k in keys
-        call airline#parts#define_text(k, k)
-    endfor
-    call airline#parts#define_accent('a', 'red')
-    call airline#parts#define_accent('b', 'green')
-    call airline#parts#define_accent('c', 'blue')
-    call airline#parts#define_accent('d', 'yellow')
-    call airline#parts#define_accent('e', 'orange')
-    call airline#parts#define_accent('f', 'purple')
-    call airline#parts#define_accent('g', 'bold')
-    call airline#parts#define_accent('h', 'italic')
-    let g:airline_section_a = airline#section#create(keys)
+
+
+"function! AccentDemo()
+  "let keys = ['dec:', '%b', 'hex:0x', '%B']
+  "for k in keys
+    "call airline#parts#define_text(k, k)
+    "call airline#parts#define_accent(k, 'green')
+  "endfor
+
+  "let g:airline_section_w = airline#section#create(keys)
+"endfunction
+"autocmd VimEnter * call AccentDemo()
+
+
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = 's'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+
+
+function! MyOverride(...)
+    call airline#parts#define_accent('Title', 'green')
+    call a:1.add_section('Title','dec:%b hex:0x%B ')
 endfunction
+
+call airline#add_statusline_func('MyOverride')
+
 "}}}
 
 
@@ -652,6 +665,7 @@ let g:NERDTreeWinPos="left"
 let g:NERDTreeWinSize=25
 let g:NERDTreeShowLineNumbers=1
 let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeShowHidden=1
 
 nmap  <F3> :ToggleNERDTree<cr>
 "let NERDTreeWinPos='left'
@@ -660,7 +674,6 @@ let g:NTPNames = ['.git','build.xml', 'Makefile', '.project', '.lvimrc','Android
 let g:NTPNames = add(g:NTPNames, 'SConstruct')
 call extend(g:NTPNames, ['*.sln', '*.csproj'])
 
-"autocmd VimEnter * call AccentDemo()
 map <Leader>nn <plug>NERDTreeTabsToggle<CR>
 
 "set rtp+=~/.vim/bundle/NERD_tree-Project 
@@ -1329,5 +1342,5 @@ nmap  <F8> <Plug>LookupFile<cr>
 
 " 复制到系统剪切板 {{{
 map m "+y
-map p "*p
+map <leader>pp "*p
 "}}}
