@@ -126,6 +126,18 @@ NeoBundle 'vim-scripts/c.vim'
 NeoBundle 'tpope/vim-characterize'
 "NeoBundle 'chrisbra/unicode.vim'
 
+"depend on unite.vim
+NeoBundle 'hrsh7th/vim-versions'
+
+NeoBundle 'vim-scripts/LargeFile'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'Shougo/tabpagebuffer.vim'
+"NeoBundle 'Shougo/neoui'
+NeoBundle 'kana/vim-tabpagecd'
+NeoBundle 'thinca/vim-ref'
+
+
+
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
@@ -519,21 +531,6 @@ autocmd BufReadPost *
     \     exe "normal g'\"" |
     \ endif
 
-" SHORTCUT SETTINGS: {{{1
-" Space to command mode.
-nnoremap <space> :
-vnoremap <space> :
-" Switching between buffers.
-nnoremap <C-h> <C-W>h
-"nnoremap <C-j> <C-W>j
-"nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-inoremap <C-h> <Esc><C-W>h
-"inoremap <C-j> <Esc><C-W>j
-"inoremap <C-k> <Esc><C-W>k
-inoremap <C-l> <Esc><C-W>l
-" "cd" to change to open directory.
-let OpenDir=system("pwd")
 
 " PLUGIN SETTINGS: {{{1
 " taglist.vim
@@ -1061,6 +1058,9 @@ function! s:unite_my_settings()"{{{
 
     " Runs "split" action by <C-s>.
     imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+
+
+
 endfunction"}}}
 
 
@@ -1077,6 +1077,7 @@ nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file
 nnoremap <leader>tf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
 nnoremap <leader>mr :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
 nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>tb :<C-u>Unite -no-split -buffer-name=buffer_tab  buffer_tab<cr>
 
 "" shortcup for key mapping
 nnoremap <silent><leader>u  :<C-u>Unite -start-insert mapping<CR>
@@ -1311,7 +1312,7 @@ call unite#custom#source('codesearch', 'max_candidates', 30)
  
 " clang_complete 相关
 "  产生错误时打开 quickfix 窗口
-let g:clang_complete_copen = 0
+let g:clang_complete_copen = 1
 "  定期更新 quickfix 窗口
 let g:clang_periodic_quickfix = 1
 "  开启 code snippets 功能
@@ -1344,3 +1345,72 @@ nmap  <F8> <Plug>LookupFile<cr>
 map m "+y
 map <leader>pp "*p
 "}}}
+
+
+" SHORTCUT SETTINGS: {{{
+" Space to command mode.
+nnoremap <space> :
+vnoremap <space> :
+" Switching between buffers.
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+inoremap <C-h> <Esc><C-W>h
+inoremap <C-j> <Esc><C-W>j
+inoremap <C-k> <Esc><C-W>k
+inoremap <C-l> <Esc><C-W>l
+" "cd" to change to open directory.
+let OpenDir=system("pwd")
+"}}}
+
+"for webdict in vim-ref{{{
+
+"webdictサイトの設定
+let g:ref_source_webdict_sites = {
+\   'je': {
+\     'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
+\   },
+\   'ej': {
+\     'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
+\   },
+\   'wiki': {
+\     'url': 'http://ja.wikipedia.org/wiki/%s',
+\   },
+\   'cn': {
+\     'url': 'http://www.iciba.com/%s',
+\   },
+\   'wikipedia:en':{'url': 'http://en.wikipedia.org/wiki/%s',  },
+\   'bing':{'url': 'http://cn.bing.com/search?q=%s', },
+\ }
+
+
+"デフォルトサイト
+let g:ref_source_webdict_sites.default = 'cn'
+"let g:ref_source_webdict_cmd='lynx -dump -nonumbers %s'
+"let g:ref_source_webdict_cmd='w3m -dump %s'
+"出力に対するフィルタ。最初の数行を削除
+function! g:ref_source_webdict_sites.je.filter(output)
+  return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.ej.filter(output)
+  return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.wiki.filter(output)
+  return join(split(a:output, "\n")[17 :], "\n")
+endfunction
+
+nmap <Leader>rj :<C-u>Ref webdict je<Space>
+nmap <Leader>re :<C-u>Ref webdict ej<Space>
+nmap <Leader>rc :<C-u>Ref webdict cn<Space>
+nmap <Leader>rw :<C-u>Ref webdict wikipedia:en<Space>
+nmap <Leader>rb :<C-u>Ref webdict bing<Space>
+
+"}}}
+
+" -- syntastic.vim {{{
+"let g:syntastic_javascript_jshint_arg = "~/.vim/jshintrc"
+let g:syntastic_error_symbol='⚔' " ☠ ✗ ☣ ☢
+let g:syntastic_warning_symbol='⚐' " ☹  ⚠
+" }}}
+
