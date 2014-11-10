@@ -135,6 +135,17 @@ NeoBundle 'Shougo/tabpagebuffer.vim'
 "NeoBundle 'Shougo/neoui'
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'thinca/vim-ref'
+"NeoBundle 'vim-scripts/fcitx.vim'
+"NeoBundle 'vim-scripts/The-Mail-Suite-tms'
+
+NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'honza/vim-snippets'
+
+NeoBundle 'vim-scripts/DoxygenToolkit.vim'
+
+NeoBundle 'vim-scripts/genutils'
 
 
 
@@ -307,7 +318,12 @@ endif
 nmap <leader>sa :cs add cscope.out<cr>
 nmap <leader>sq :cs add $CSCOPE_DB $PROJ<cr>
 
-nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
+nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
 
 
 
@@ -345,20 +361,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
-" for doxygen toolkit
-let g:DoxygenToolkit_briefTag_pre="@Synopsis "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns "
-let g:DoxygenToolkit_blockHeader="----------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------"
-let g:DoxygenToolkit_licenseTag="My own license"
-let g:DoxygenToolkit_authorName="chen.chunsheng, badwtg1111@hotmail.com"
-let s:licenseTag = "Copyright(C)\ "
-let s:licenseTag = s:licenseTag . "For free\ "
-let s:licenseTag = s:licenseTag . "All Rights Reserved\ "
-let g:DoxygenToolkit_licenseTag = s:licenseTag
-let g:DoxygenToolkit_briefTag_funcName="yes"
-let g:doxygen_enhanced_color=1
 
 " for supertab, added by LiaoLiang Nov28,2008
 let g:SuperTabRetainCompletionType=2
@@ -556,10 +558,6 @@ source $VIMRUNTIME/ftplugin/man.vim
 nmap <C-M> :Man 3 <cword><CR>
 imap <C-M> <ESC><C-M>
 
-" snipMate
-let g:snips_author="Du Jianfeng"
-let g:snips_email="cmdxiaoha@163.com"
-let g:snips_copyright="SicMicro, Inc"
 " plugin shortcuts
 function! RunShell(Msg, Shell)
 	echo a:Msg . '...'
@@ -572,7 +570,7 @@ nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_left = 1
 
 
-nmap  <F5> :MRU<cr>
+"nmap  <F5> :MRU<cr>
 nmap  <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h<cr><C-o>:cw<cr>
 nmap  <F9> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
 nmap <F10> :call HLUDSync()<cr>
@@ -1354,11 +1352,11 @@ vnoremap <space> :
 " Switching between buffers.
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
+"nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 inoremap <C-h> <Esc><C-W>h
 inoremap <C-j> <Esc><C-W>j
-inoremap <C-k> <Esc><C-W>k
+"inoremap <C-k> <Esc><C-W>k
 inoremap <C-l> <Esc><C-W>l
 " "cd" to change to open directory.
 let OpenDir=system("pwd")
@@ -1419,4 +1417,59 @@ nmap <Leader>tn :tn<cr>
 nmap <Leader>tp :tp<cr>
 
 "}}}
+
+" for sh in shell{{{
+nmap <Leader>sh :sh<cr>
+
+"}}}
+
+" snipMate{{{
+"let g:snips_author="Du Jianfeng"
+"let g:snips_email="cmdxiaoha@163.com"
+"let g:snips_copyright="SicMicro, Inc"
+"}}}
+
+"for neosnippet {{{
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+"}}}
+
+" for doxygen toolkit {{{
+let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_blockHeader="----------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------"
+let g:DoxygenToolkit_licenseTag="My own license"
+let g:DoxygenToolkit_authorName="chen.chunsheng, badwtg1111@hotmail.com"
+let s:licenseTag = "Copyright(C)\ "
+let s:licenseTag = s:licenseTag . "For free\ "
+let s:licenseTag = s:licenseTag . "All Rights Reserved\ "
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+"}}}
+
 
