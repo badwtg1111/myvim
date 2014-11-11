@@ -556,10 +556,6 @@ if has("gdb")
 	let g:vimgdb_debug_file=""
 	run macros/gdb_mappings.vim
 endif
-" Man.vim
-source $VIMRUNTIME/ftplugin/man.vim
-nmap <C-M> :Man 3 <cword><CR>
-imap <C-M> <ESC><C-M>
 
 " plugin shortcuts
 function! RunShell(Msg, Shell)
@@ -1474,5 +1470,14 @@ let g:DoxygenToolkit_licenseTag = s:licenseTag
 let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
 "}}}
+
+
+" Man.vim {{{
+source $VIMRUNTIME/ftplugin/man.vim
+nnoremap <C-A> :Man 3 <cword><CR>
+inoremap <C-A> <ESC>:Man 3 <cword><CR>
+"}}}
+
+
 
 
