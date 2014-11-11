@@ -471,7 +471,7 @@ nmap wm :WMToggle<cr>
 "    Created: 2010-01-01
 " LastChange: 2010-04-22
 
-" GENERAL SETTINGS: {{{1
+" GENERAL SETTINGS: {{{
 " To use VIM settings, out of VI compatible mode.
 set nocompatible
 " Setting colorscheme
@@ -523,6 +523,9 @@ set   wildignore=*.bak,*.o,*.e,*~
 set   wildmenu
 set   wildmode=list:longest,full
 set nowrap
+"}}}
+
+
 
 " AUTO COMMANDS: {{{1
 " auto expand tab to blanks
@@ -1268,8 +1271,8 @@ let g:vimfiler_as_default_explorer = 1
 "}}}
 
 "for buftabs {{{
-noremap <C-left> :bprev<CR>
-noremap <C-right> :bnext<CR>
+noremap <Leader>bp :bprev<CR>
+noremap <Leader>bn :bnext<CR>
 "}}}
 
 "for taghighlight {{{
