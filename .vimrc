@@ -1067,7 +1067,7 @@ endfunction"}}}
 
 "" File search
 
-nnoremap <silent><C-p> :Unite -no-split -start-insert file_rec buffer<CR>
+"nnoremap <silent><C-p> :Unite -no-split -start-insert file_rec buffer<CR>
 "nnoremap <leader>mm :Unite -auto-resize file file_mru file_rec<cr>
 nnoremap <leader>mm :Unite   -no-split -start-insert   file file_mru file_rec buffer<cr>
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
