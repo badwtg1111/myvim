@@ -1615,3 +1615,7 @@ nnoremap <Leader>pl :<c-u>CtrlPLauncher<cr>
 "let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 "}}}
+
+"for fzf {{{
+set rtp+=~/.fzf
+"}}}
