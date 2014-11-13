@@ -148,6 +148,27 @@ NeoBundle 'vim-scripts/DoxygenToolkit.vim'
 NeoBundle 'vim-scripts/genutils'
 
 
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'felixSchl/ctrlp-unity3d-docs'
+NeoBundle 'voronkovich/ctrlp-nerdtree.vim'
+NeoBundle 'elentok/ctrlp-objects.vim'
+NeoBundle 'h14i/vim-ctrlp-buftab'
+NeoBundle 'vim-scripts/ctrlp-cmdpalette'
+NeoBundle 'mattn/ctrlp-windowselector'
+NeoBundle 'the9ball/ctrlp-gtags'
+NeoBundle 'thiderman/ctrlp-project'
+NeoBundle 'mattn/ctrlp-google'
+NeoBundle 'ompugao/ctrlp-history'
+NeoBundle 'pielgrzym/ctrlp-sessions'
+NeoBundle 'tacahiroy/ctrlp-funky'
+NeoBundle 'brookhong/k.vim'
+NeoBundle 'mattn/ctrlp-launcher'
+NeoBundle 'sgur/ctrlp-extensions.vim'
+NeoBundle 'FelikZ/ctrlp-py-matcher'
+NeoBundle 'JazzCore/ctrlp-cmatcher'
+
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -585,27 +606,6 @@ nmap <leader>gs :GetScripts<cr>
 
 
 
-" comment for ctrlp {{{
-"set runtimepath^=~/.vim/bundle/ctrlp.vim 
-""let g:ctrlp_map = ',,'
-""let g:ctrlp_open_multiple_files = 'v'
-
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-"let g:ctrlp_custom_ignore = {
-  "\ 'dir':  '\v[\/]\.(git)$',
-  "\ 'file': '\v\.(log|jpg|png|jpeg)$',
-  "\ }
-
-"}}}
-
-" comment for ctrlp-funky {{{
-"let g:ctrlp_extensions = ['funky']
-"nnoremap <Leader>fu :CtrlPFunky<Cr><Cr>
-"nnoremap <Leader>mm :CtrlPMixed<Cr>
-"" narrow the list down with a word under cursor
-"nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-"let g:ctrlp_funky_syntax_highlight = 1
-" }}}
 
 
 
@@ -1479,5 +1479,139 @@ inoremap <C-A> <ESC>:Man 3 <cword><CR>
 "}}}
 
 
+"for open-browser {{{
+" This is my setting. 
+let g:netrw_nogx = 1 " disable netrw's gx mapping. 
+"nmap gx <Plug>(openbrowser-smart-search) 
+"vmap gx <Plug>(openbrowser-smart-search) 
 
 
+"" Open URI under cursor. 
+nmap go <Plug>(openbrowser-open) 
+"" Open selected URI. 
+vmap go <Plug>(openbrowser-open) 
+
+" Search word under cursor. 
+nmap gs <Plug>(openbrowser-search) 
+" Search selected word. 
+vmap gs <Plug>(openbrowser-search) 
+
+" If it looks like URI, Open URI under cursor. 
+" Otherwise, Search word under cursor. 
+nmap gx <Plug>(openbrowser-smart-search) 
+" If it looks like URI, Open selected URI. 
+" Otherwise, Search selected word. 
+vmap gx <Plug>(openbrowser-smart-search) 
+
+vnoremap gob :OpenBrowser http://baidu.com/<cr>
+nnoremap gob :OpenBrowser http://baidu.com/<cr>
+
+vnoremap gog :OpenBrowser http://www.google.com.hk/<cr>
+nnoremap gog :OpenBrowser http://www.google.com.hk/<cr>
+
+" In command-line 
+":OpenBrowser http://google.com/ 
+":OpenBrowserSearch ggrks 
+":OpenBrowserSmartSearch http://google.com/ 
+":OpenBrowserSmartSearch ggrks 
+"}}}
+
+
+
+" comment for ctrlp {{{
+let g:ctrlp_working_path_mode = 'ra'
+
+let g:ctrlp_root_markers = '.projectile'
+
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
+let g:ctrlp_show_hidden = 1
+"for caching
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+"set runtimepath^=~/.vim/bundle/ctrlp.vim 
+"let g:ctrlp_map = ',,'
+"let g:ctrlp_open_multiple_files = 'v'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|png|jpg)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+"let g:ctrlp_user_command = {
+    "\ 'types': {
+        "\ 1: ['.git', 'cd %s && git ls-files'],
+        "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        "\ },
+    "\ 'fallback': 'find %s -type f'
+    "\ }
+
+"let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      "\ --ignore out
+      "\ --ignore .git
+      "\ --ignore .svn
+      "\ --ignore .hg
+      "\ --ignore .DS_Store
+      "\ --ignore "**/*.pyc"
+      "\ -g ""'
+      
+
+let g:ctrlp_user_command = {
+    \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+    \ 'fallback': 'ag %s -i --nocolor --nogroup --hidden
+                    \ --ignore out
+                    \ --ignore .git
+                    \ --ignore .svn
+                    \ --ignore .hg
+                    \ --ignore .DS_Store
+                    \ --ignore "**/*.pyc"
+                    \ -g ""'
+    \ }
+
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
+
+
+nnoremap <Leader>kk :CtrlPMixed<Cr>
+
+"}}}
+
+" comment for ctrlp-funky {{{
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+" }}}
+
+"for ctrlp_nerdtree {{{
+let g:ctrlp_nerdtree_show_hidden = 1
+"}}}
+
+"for ctrlp_sessions{{{
+let g:ctrlp_extensions = ['funky', 'sessions' , 'k' , 'tag', 'mixed', 'quickfix', 'undo', 'line', 'changes', 'cmdline', 'menu']
+"}}}
+
+
+"for k.vim {{{
+nnoremap <silent> <leader>qe :CtrlPK<CR>
+"}}}
+
+" for ctrlp-launcher {{{
+nnoremap <Leader>pl :<c-u>CtrlPLauncher<cr>
+"}}}
+
+"for ctrlp-cmatcher {{{
+
+"let g:ctrlp_max_files = 0
+"let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+
+"}}}
