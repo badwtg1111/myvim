@@ -167,7 +167,7 @@ NeoBundle 'mattn/ctrlp-launcher'
 NeoBundle 'sgur/ctrlp-extensions.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'JazzCore/ctrlp-cmatcher'
-
+NeoBundle 'tpope/vim-scriptease'
 
 
 " My Bundles here:
@@ -1618,4 +1618,6 @@ nnoremap <Leader>pl :<c-u>CtrlPLauncher<cr>
 
 "for fzf {{{
 set rtp+=~/.fzf
+nnoremap <Leader>fz :FZF<CR>
 "}}}
+
