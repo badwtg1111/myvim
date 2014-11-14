@@ -169,6 +169,11 @@ NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'JazzCore/ctrlp-cmatcher'
 NeoBundle 'tpope/vim-scriptease'
 
+NeoBundle 'marius/unite-fasd'
+NeoBundle 'tomtom/tlib_vim'
+NeoBundle 'amiorin/vim-fasd'
+NeoBundle 'vim-scripts/ctrlp-z'
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -952,9 +957,32 @@ endif
 
 if executable('ag')
 let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S'
 let g:unite_source_grep_recursive_opt=''
 endif
+let g:unite_source_grep_max_candidates = 200
+
+if executable('ag')
+    " Use ag in unite grep source.
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+                \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+                \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+    " Use pt in unite grep source.
+    " https://github.com/monochromegane/the_platinum_searcher
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+    " Use ack in unite grep source.
+    let g:unite_source_grep_command = 'ack-grep'
+    let g:unite_source_grep_default_opts =
+                \ '-i --no-heading --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
 """ my custom unite config
 " The prefix key.
 nnoremap    [unite]   <Nop>
@@ -1621,3 +1649,13 @@ set rtp+=~/.fzf
 nnoremap <Leader>fz :FZF<CR>
 "}}}
 
+"for vim-fasd.vim {{{
+nnoremap <Leader>z :Z<CR>
+"}}}
+
+"for ctrlp-z {{{
+let g:ctrlp_z_nerdtree = 1
+let g:ctrlp_extensions = ['Z', 'F']
+nnoremap sz :CtrlPZ<Cr>
+nnoremap sf :CtrlPF<Cr>
+"}}}
