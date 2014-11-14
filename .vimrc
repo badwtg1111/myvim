@@ -934,11 +934,6 @@ let g:unite_source_grep_default_opts = "-iRHn"
 \ . " --exclude-dir='.git'"
 \ . " --exclude-dir='node_modules'"
 
-if executable('ag')
-let g:unite_source_grep_command='ag'
-let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-let g:unite_source_grep_recursive_opt=''
-endif
 
 
 if executable('jvgrep')
@@ -955,6 +950,11 @@ if executable('ack')
     let g:unite_source_grep_recursive_opt = ''
 endif
 
+if executable('ag')
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_recursive_opt=''
+endif
 """ my custom unite config
 " The prefix key.
 nnoremap    [unite]   <Nop>
