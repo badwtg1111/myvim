@@ -315,7 +315,7 @@ if has("cscope") && filereadable("/usr/bin/cscope")
     set nocsverb
     " add any database in current directory
     if filereadable("cscope.out")
-       cs add cscope.out
+       cs add cscope.out $PROJ
     " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
        cs add $CSCOPE_DB $PROJ
@@ -351,6 +351,8 @@ nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /
             \:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
 
+
+nmap <leader>sm :cs show<cr>
 
 
 nmap <leader>ss :cs find s <C-R>=expand("<cword>")<cr><cr>
