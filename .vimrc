@@ -950,12 +950,6 @@ if executable('jvgrep')
     let g:unite_source_grep_recursive_opt = '-R'
 endif
 
-" For ack.
-if executable('ack')
-    let g:unite_source_grep_command = 'ack'
-    let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
-    let g:unite_source_grep_recursive_opt = ''
-endif
 
 if executable('ag')
 let g:unite_source_grep_command='ag'
@@ -985,6 +979,12 @@ elseif executable('ack-grep')
     let g:unite_source_grep_recursive_opt = ''
 endif
 
+" For ack.
+if executable('ack')
+    let g:unite_source_grep_command = 'ack'
+    let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+    let g:unite_source_grep_recursive_opt = ''
+endif
 """ my custom unite config
 " The prefix key.
 nnoremap    [unite]   <Nop>
