@@ -297,6 +297,7 @@ set tags+=/home/chenchunsheng/qc4.4_20140513/frameworks/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/system/tags
 
 set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
+set tags+=/home/chenchunsheng/qc4.4_20140513/hardware/tags
 
 " for lte-mol
 "set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
@@ -350,6 +351,7 @@ nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /
             \:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/hardware/cscope.out /home/chenchunsheng/qc4.4_20140513/hardware <cr>
 
 
 nmap <leader>sm :cs show<cr>
