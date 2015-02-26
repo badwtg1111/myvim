@@ -174,6 +174,16 @@ NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'amiorin/vim-fasd'
 NeoBundle 'vim-scripts/ctrlp-z'
 
+NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'vim-scripts/utl.vim'
+NeoBundle 'vim-scripts/calendar.vim--Matsumoto'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'chrisbra/NrrwRgn'
+NeoBundle 'vim-scripts/SyntaxRange'
+
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -242,6 +252,10 @@ NeoBundleCheck
 "--------------------------------------------------------------------------------
 
 
+" Setting colorscheme
+"color mycolor
+"color desert
+colo adrian
 
 "vim paste {{{
 set clipboard=unnamed
@@ -299,6 +313,8 @@ set tags+=/home/chenchunsheng/qc4.4_20140513/system/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/external/tags
 set tags+=/home/chenchunsheng/qc4.4_20140513/hardware/tags
 
+set tags+=/home/chenchunsheng/workdir/mysql/tags
+set tags+=/home/chenchunsheng/workdir/mysql-5.6.22/tags
 " for lte-mol
 "set tags+=/home/chenchunsheng/lte-mol/frameworks/tags
 
@@ -352,6 +368,8 @@ nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /
             \:cs add /home/chenchunsheng/qc4.4_20140513/frameworks/cscope.out /home/chenchunsheng/qc4.4_20140513/frameworks <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/hardware/cscope.out /home/chenchunsheng/qc4.4_20140513/hardware <cr>
+            \:cs add /home/chenchunsheng/workdir/mysql/cscope.out /home/chenchunsheng/workdir/mysql <cr>
+            \:cs add /home/chenchunsheng/workdir/mysql-5.6.22/cscope.out /home/chenchunsheng/workdir/mysql-5.6.22 <cr>
 
 
 nmap <leader>sm :cs show<cr>
@@ -504,10 +522,6 @@ nmap wm :WMToggle<cr>
 " GENERAL SETTINGS: {{{
 " To use VIM settings, out of VI compatible mode.
 set nocompatible
-" Setting colorscheme
-"color mycolor
-"color desert
-color adrian
 " Other settings.
 set   autoindent
 set   autoread
