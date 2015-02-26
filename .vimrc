@@ -183,7 +183,7 @@ NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'chrisbra/NrrwRgn'
 NeoBundle 'vim-scripts/SyntaxRange'
 
-
+NeoBundle 'Lokaltog/vim-easymotion'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
