@@ -1678,4 +1678,4 @@ nnoremap sz :CtrlPZ<Cr>
 nnoremap sf :CtrlPF<Cr>
 "}}}
 
-nnoremap ca :colo adrian<CR>
+nnoremap va :colo adrian<CR>
