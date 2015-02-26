@@ -1677,3 +1677,5 @@ let g:ctrlp_extensions = ['Z', 'F']
 nnoremap sz :CtrlPZ<Cr>
 nnoremap sf :CtrlPF<Cr>
 "}}}
+
+nnoremap ca :colo adrian<CR>
