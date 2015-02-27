@@ -185,6 +185,9 @@ NeoBundle 'vim-scripts/SyntaxRange'
 
 NeoBundle 'Lokaltog/vim-easymotion'
 
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'plasticboy/vim-markdown'
+
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
