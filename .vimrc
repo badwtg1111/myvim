@@ -187,6 +187,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'ashisha/image.vim'
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -364,7 +366,7 @@ endif
 nmap <leader>sa :cs add cscope.out<cr>
 nmap <leader>sq :cs add $CSCOPE_DB $PROJ<cr>
 
-nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>
+nmap <leader>sba :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>
             \:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>
@@ -374,6 +376,15 @@ nmap <leader>sb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /
             \:cs add /home/chenchunsheng/workdir/mysql/cscope.out /home/chenchunsheng/workdir/mysql <cr>
             \:cs add /home/chenchunsheng/workdir/mysql-5.6.22/cscope.out /home/chenchunsheng/workdir/mysql-5.6.22 <cr>
 
+nmap <leader>sbb :cs add /home/chenchunsheng/qc4.4_20140513/packages/cscope.out /home/chenchunsheng/qc4.4_20140513/packages <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/development/cscope.out /home/chenchunsheng/qc4.4_20140513/development <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/vendor/cscope.out /home/chenchunsheng/qc4.4_20140513/vendor <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/external/cscope.out /home/chenchunsheng/qc4.4_20140513/external <cr>
+            \:cs add /home/chenchunsheng/t2_20150302/frameworks/cscope.out /home/chenchunsheng/t2_20150302/frameworks <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/system/cscope.out /home/chenchunsheng/qc4.4_20140513/system <cr>
+            \:cs add /home/chenchunsheng/qc4.4_20140513/hardware/cscope.out /home/chenchunsheng/qc4.4_20140513/hardware <cr>
+            \:cs add /home/chenchunsheng/workdir/mysql/cscope.out /home/chenchunsheng/workdir/mysql <cr>
+            \:cs add /home/chenchunsheng/workdir/mysql-5.6.22/cscope.out /home/chenchunsheng/workdir/mysql-5.6.22 <cr>
 
 nmap <leader>sm :cs show<cr>
 
@@ -1552,12 +1563,14 @@ nmap gx <Plug>(openbrowser-smart-search)
 " Otherwise, Search selected word. 
 vmap gx <Plug>(openbrowser-smart-search) 
 
-vnoremap gob :OpenBrowser http://baidu.com/<cr>
-nnoremap gob :OpenBrowser http://baidu.com/<cr>
+vnoremap gob :OpenBrowser http://www.baidu.com/s?wd=<C-R>=expand("<cword>")<cr><cr>
+nnoremap gob :OpenBrowser http://www.baidu.com/s?wd=<C-R>=expand("<cword>")<cr><cr>
 
 vnoremap gog :OpenBrowser http://www.google.com.hk/<cr>
 nnoremap gog :OpenBrowser http://www.google.com.hk/<cr>
 
+vnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>")<cr><cr>
+nnoremap goi :OpenBrowserSmartSearch http://www.iciba.com/<C-R>=expand("<cword>")<cr><cr>
 " In command-line 
 ":OpenBrowser http://google.com/ 
 ":OpenBrowserSearch ggrks 
