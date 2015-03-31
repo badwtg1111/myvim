@@ -188,7 +188,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'ashisha/image.vim'
-
+NeoBundle 'chrisbra/vim-diff-enhanced'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
