@@ -1534,8 +1534,8 @@ let g:doxygen_enhanced_color=1
 
 " Man.vim {{{
 source $VIMRUNTIME/ftplugin/man.vim
-nnoremap <C-A> :Man 3 <cword><CR>
-inoremap <C-A> <ESC>:Man 3 <cword><CR>
+nnoremap <C-K> :Man 3 <C-R>=expand("<cword>")<CR><CR>
+inoremap <C-K> <ESC>:Man 3 <C-R>=expand("<cword>")<CR><CR>
 "}}}
 
 
