@@ -20,10 +20,20 @@ endif
 " Required:
 call neobundle#begin(expand('~/.vim/bundle/'))
 
+let g:neobundle#install_process_timeout = 1500
+
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+"NeoBundle 'Valloric/YouCompleteMe', {
+     "\ 'build'      : {
+        "\ 'mac'     : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        "\ 'unix'    : './install.sh --clang-completer --system-libclang --omnisharp-completer --gocode-completer',
+        "\ 'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+        "\ 'cygwin'  : './install.sh --clang-completer --system-libclang --omnisharp-completer'
+        "\ }
+     "\ }
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
@@ -189,6 +199,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'ashisha/image.vim'
 NeoBundle 'chrisbra/vim-diff-enhanced'
+NeoBundle 'gmarik/Vundle.vim'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -209,19 +220,28 @@ NeoBundleCheck
 "}}}
 
 
-"------------------------------------------------------------------------------
-"for Vundle {{{
-"set nocompatible              " be iMproved, required
-"filetype off                  " required
+" Vundle.vim {{{
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" Setup RTP:
+let s:vimfiles = ""
+if has("win32") || has("win64")
+	 let s:vimfiles = "$VIM/vimfiles/"
+else
+	  let s:vimfiles = "~/.vim/"
+endif
+
 
 " set the runtime path to include Vundle and initialize
+let &runtimepath .= ',' . expand(s:vimfiles . "bundle/Vundle.vim/")
 "set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call vundle#begin(expand(s:vimfiles . "bundle/"))
 
 " let Vundle manage Vundle, required
-"Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -239,22 +259,28 @@ NeoBundleCheck
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
+Plugin 'Valloric/YouCompleteMe'
+
+
+
+
+
 " All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
+call vundle#end()            " required
+filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
 " Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" }}}
-"--------------------------------------------------------------------------------
+"}}} end Vundle.vim
+
 
 
 " Setting colorscheme
@@ -1695,3 +1721,11 @@ nnoremap sf :CtrlPF<Cr>
 "}}}
 
 nnoremap va :colo adrian<CR>
+
+" for YouCompleteMe {{{
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_confirm_extra_conf = 0
+" }}} end YouCompleteMe
+
