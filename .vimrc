@@ -77,7 +77,7 @@ NeoBundle 'vim-scripts/NERD_tree-Project'
 NeoBundle 'rstacruz/sparkup'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'jaromero/vim-monokai-refined'
-NeoBundle 'ianva/vim-youdao-translater'
+"NeoBundle 'ianva/vim-youdao-translater'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'hari-rangarajan/CCTree'
 NeoBundle 'vimwiki/vimwiki'
@@ -739,11 +739,11 @@ noremap <Leader>p :MBEbp<CR>
 "}}}
 
 
-"youdao {{{
-vnoremap <silent> <leader>ydv <Esc>:Ydv<CR> 
-nnoremap <silent> <leader>ydc <Esc>:Ydc<CR> 
-noremap <leader>yd :Yde<CR>
-"}}}
+""youdao {{{
+"vnoremap <silent> <leader>ydv <Esc>:Ydv<CR> 
+"nnoremap <silent> <leader>ydc <Esc>:Ydc<CR> 
+"noremap <leader>yd :Yde<CR>
+""}}}
 
 
 "for indentLine {{{
